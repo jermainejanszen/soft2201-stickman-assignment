@@ -14,7 +14,6 @@ import org.json.simple.parser.ParseException;
 public class App {
 
     public static void main(String[] args) {
-        // TODO: read configuration json file and initialise the game
         // File path to JSON configuration file
         String configFilePath = "src/main/java/stickman/example.json";
         String stickmanSize = null;
@@ -42,5 +41,6 @@ public class App {
         System.out.println("Stickman size: " + stickmanSize);
         System.out.println("X position: " + stickmanXPos);
         System.out.println("Cloud velocity: " + cloudVelocity);
+
     }
 }
