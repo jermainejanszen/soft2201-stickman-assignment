@@ -3,12 +3,44 @@
  */
 package stickman;
 
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        // TODO: read configuration json file and initialise the game
+        // File path to JSON configuration file
+        String configFilePath = "src/main/java/stickman/example.json";
+        String stickmanSize = null;
+        double stickmanXPos = -1.0;
+        double cloudVelocity = 0.0;
+
+        // Begin parsing JSON file
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader(configFilePath)) {
+            Object obj = jsonParser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            stickmanSize = (String) jsonObject.get("stickmanSize");
+            stickmanXPos = (double) ((JSONObject) jsonObject.get("stickmanPos")).get("x");
+            cloudVelocity = (double) jsonObject.get("cloudVelocity");
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        } catch (IOException e) {
+            System.out.println("IO exception thrown.");
+        } catch (ParseException e) {
+            System.out.println("Parse exception thrown.");
+        }
+
+        System.out.println("Stickman size: " + stickmanSize);
+        System.out.println("X position: " + stickmanXPos);
+        System.out.println("Cloud velocity: " + cloudVelocity);
     }
 }
