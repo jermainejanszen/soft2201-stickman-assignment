@@ -10,28 +10,29 @@ public class GameEngineImpl implements GameEngine {
     }
 
     public void startLevel() {
-
+        Level newLevel = new LevelImpl();
+        this.level = newLevel;
     }
 
     // Hero inputs - boolean for success (possibly for sound feedback)
     public boolean jump() {
-        return true;
+        return this.level.jump();
     }
 
     public boolean moveLeft() {
-        return true;
+        return this.level.moveLeft();
     }
 
     public boolean moveRight() {
-        return true;
+        return this.level.moveRight();
     }
 
     public boolean stopMoving() {
-        return true;
+        return this.level.stopMoving();
     }
 
     public void tick() {
-
+        this.level.tick();
     }
 
     // Game engine's constructor
