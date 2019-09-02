@@ -24,7 +24,7 @@ public class App extends Application {
                     + " as your code will fail to compile on Java 10 and below.");
         }
 
-        GameEngine model = new GameEngineImpl("src/main/java/stickman/example.json");
+        GameEngine model = new GameEngineImpl("example.json");
         GameWindow window = new GameWindow(model, 640, 400);
         window.run();
 
