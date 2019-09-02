@@ -77,11 +77,11 @@ public class Cloud implements Entity {
         Random rand = new Random();
         int randomCloud = rand.nextInt(2);
         if (randomCloud == 1) {
-            this.imagePath = "src/main/resources/cloud_2.png";
+            this.imagePath = "cloud_2.png";
             this.height = 22;
             this.width = 80;
         } else {
-            this.imagePath = "src/main/resources/cloud_1.png";
+            this.imagePath = "cloud_1.png";
             this.height = 10;
             this.width = 40;
         }

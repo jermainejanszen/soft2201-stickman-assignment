@@ -67,7 +67,7 @@ public class Hero implements Entity {
 
     // Hero's constructor
     public Hero(double xPos, String size, Level level) {
-        this.imagePath = "src/main/resources/ch_stand1.png";
+        this.imagePath = "ch_stand1.png";
         this.xPos = xPos;
         switch (size) {
         case "tiny":
