@@ -1,5 +1,16 @@
 package stickman.model;
 
+import java.util.List;
+import java.util.ArrayList;
+
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class GameEngineImpl implements GameEngine {
     // Game engine's attributes
     private Level level;
@@ -10,8 +21,7 @@ public class GameEngineImpl implements GameEngine {
     }
 
     public void startLevel() {
-        Level newLevel = new LevelImpl();
-        this.level = newLevel;
+        return;
     }
 
     // Hero inputs - boolean for success (possibly for sound feedback)
@@ -36,7 +46,39 @@ public class GameEngineImpl implements GameEngine {
     }
 
     // Game engine's constructor
-    public GameEngineImpl(Level inputLevel) {
-        this.level = inputLevel;
+    public GameEngineImpl(String jsonPath) {
+        String configFilePath = jsonPath;
+        String stickmanSize = null;
+        double stickmanXPos = -1.0;
+        double cloudVelocity = 0.0;
+
+        // Begin parsing JSON file
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader(configFilePath)) {
+            Object obj = jsonParser.parse(reader);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            stickmanSize = (String) jsonObject.get("stickmanSize");
+            stickmanXPos = (double) ((JSONObject) jsonObject.get("stickmanPos")).get("x");
+            cloudVelocity = (double) jsonObject.get("cloudVelocity");
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        } catch (IOException e) {
+            System.out.println("IO exception thrown.");
+        } catch (ParseException e) {
+            System.out.println("Parse exception thrown.");
+        }
+
+        List<Entity> entities = new ArrayList<Entity>();
+
+        this.level = new LevelImpl(entities, 400, 640, 300);
+
+        Hero hero = new Hero(stickmanXPos, stickmanSize, this.level);
+        Cloud cloudOne = new Cloud(cloudVelocity, this.level);
+        Cloud cloudTwo = new Cloud(cloudVelocity, this.level);
+        level.addEntity(hero);
+        level.addEntity(cloudOne);
+        level.addEntity(cloudTwo);
     }
 }

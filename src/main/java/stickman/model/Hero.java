@@ -42,7 +42,7 @@ public class Hero implements Entity {
 
     @Override
     public boolean jump() {
-        return false;
+        return true;
     }
 
     @Override
@@ -63,5 +63,34 @@ public class Hero implements Entity {
     @Override
     public void tickBehaviour() {
 
+    }
+
+    // Hero's constructor
+    public Hero(double xPos, String size, Level level) {
+        this.imagePath = "src/main/resources/ch_stand1.png";
+        this.xPos = xPos;
+        switch (size) {
+        case "tiny":
+            this.height = 17;
+            this.width = 10;
+            break;
+        case "normal":
+            this.height = 34;
+            this.width = 20;
+            break;
+        case "large":
+            this.height = 51;
+            this.width = 30;
+            break;
+        case "giant":
+            this.height = 68;
+            this.width = 40;
+            break;
+        default:
+            System.out.println("Invalid hero size.");
+            System.exit(1);
+        }
+        this.yPos = level.getFloorHeight() - this.height;
+        this.layer = Layer.FOREGROUND;
     }
 }

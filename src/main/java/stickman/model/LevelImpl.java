@@ -10,26 +10,37 @@ public class LevelImpl implements Level {
     private double floorHeight;
 
     // Level's methods
+    @Override
     public List<Entity> getEntities() {
         return this.entities;
     }
 
+    @Override
+    public boolean addEntity(Entity entity) {
+        return this.entities.add(entity);
+    }
+
+    @Override
     public double getHeight() {
         return this.height;
     }
 
+    @Override
     public double getWidth() {
         return this.width;
     }
 
+    @Override
     public void tick() {
         return;
     }
 
+    @Override
     public double getFloorHeight() {
         return this.floorHeight;
     }
 
+    @Override
     public double getHeroX() {
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Hero) {
@@ -39,6 +50,7 @@ public class LevelImpl implements Level {
         return -1;
     }
 
+    @Override
     public boolean jump() {
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Hero) {
@@ -48,6 +60,7 @@ public class LevelImpl implements Level {
         return false;
     }
 
+    @Override
     public boolean moveLeft() {
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Hero) {
@@ -57,6 +70,7 @@ public class LevelImpl implements Level {
         return false;
     }
 
+    @Override
     public boolean moveRight() {
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Hero) {
@@ -66,6 +80,7 @@ public class LevelImpl implements Level {
         return false;
     }
 
+    @Override
     public boolean stopMoving() {
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Hero) {
@@ -75,4 +90,11 @@ public class LevelImpl implements Level {
         return false;
     }
 
+    // Level's constructor
+    public LevelImpl(List<Entity> entities, double height, double width, double floorHeight) {
+        this.entities = entities;
+        this.height = height;
+        this.width = width;
+        this.floorHeight = floorHeight;
+    }
 }
