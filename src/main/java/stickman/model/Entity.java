@@ -7,6 +7,10 @@ public interface Entity {
 
     double getYPos();
 
+    double getXVelocity();
+
+    double getYVelocity();
+
     double getHeight();
 
     double getWidth();

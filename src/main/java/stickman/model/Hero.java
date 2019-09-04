@@ -5,6 +5,8 @@ public class Hero implements Entity {
     private String imagePath;
     private double xPos;
     private double yPos;
+    private double xVelocity;
+    private double yVelocity;
     private double height;
     private double width;
     private Layer layer;
@@ -23,6 +25,16 @@ public class Hero implements Entity {
     @Override
     public double getYPos() {
         return this.yPos;
+    }
+
+    @Override
+    public double getXVelocity() {
+        return this.xVelocity;
+    }
+
+    @Override
+    public double getYVelocity() {
+        return this.yVelocity;
     }
 
     @Override
@@ -91,6 +103,8 @@ public class Hero implements Entity {
             System.exit(1);
         }
         this.yPos = level.getFloorHeight() - this.height;
+        this.xVelocity = 0;
+        this.yVelocity = 0;
         this.layer = Layer.FOREGROUND;
     }
 }

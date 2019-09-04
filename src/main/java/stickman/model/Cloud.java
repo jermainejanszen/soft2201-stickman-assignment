@@ -7,10 +7,11 @@ public class Cloud implements Entity {
     private String imagePath;
     private double xPos;
     private double yPos;
+    private double xVelocity;
+    private double yVelocity;
     private double height;
     private double width;
     private Layer layer;
-    private double velocity;
 
     // Cloud's methods
     @Override
@@ -26,6 +27,16 @@ public class Cloud implements Entity {
     @Override
     public double getYPos() {
         return this.yPos;
+    }
+
+    @Override
+    public double getXVelocity() {
+        return this.xVelocity;
+    }
+
+    @Override
+    public double getYVelocity() {
+        return this.yVelocity;
     }
 
     @Override
@@ -68,10 +79,6 @@ public class Cloud implements Entity {
 
     }
 
-    public double getVelocity() {
-        return this.velocity;
-    }
-
     // Cloud's constructor
     public Cloud(double velocity, Level level) {
         Random rand = new Random();
@@ -90,7 +97,8 @@ public class Cloud implements Entity {
         this.yPos = 30 + randomHeight;
         this.xPos = 100 + randomHeight * 4;
 
-        this.velocity = velocity;
+        this.xVelocity = velocity;
+        this.yVelocity = 0;
         this.layer = Layer.BACKGROUND;
     }
 }
