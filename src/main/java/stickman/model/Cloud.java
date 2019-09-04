@@ -75,6 +75,11 @@ public class Cloud implements Entity {
     }
 
     @Override
+    public void applyGravity() {
+        return;
+    }
+
+    @Override
     public void tickBehaviour() {
 
     }

@@ -1,6 +1,6 @@
 package stickman.model;
 
-public interface Entity {
+public interface Entity extends Gravity {
     String getImagePath();
 
     double getXPos();

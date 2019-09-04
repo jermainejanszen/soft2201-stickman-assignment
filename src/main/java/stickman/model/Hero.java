@@ -73,6 +73,11 @@ public class Hero implements Entity {
     }
 
     @Override
+    public void applyGravity() {
+        this.yVelocity = this.yVelocity + acceleration;
+    }
+
+    @Override
     public void tickBehaviour() {
 
     }
