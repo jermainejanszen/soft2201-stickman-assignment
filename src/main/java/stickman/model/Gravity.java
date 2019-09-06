@@ -1,7 +1,7 @@
 package stickman.model;
 
 public interface Gravity {
-    static double acceleration = 2;
+    static final double acceleration = 2;
 
     void applyGravity();
 }
