@@ -56,10 +56,10 @@ public class Hero implements Entity {
     @Override
     public boolean jump() {
         if (this.yVelocity == 0) {
-            this.yVelocity = -10.0;
+            this.yVelocity = -5.0;
             return true;
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -101,6 +101,7 @@ public class Hero implements Entity {
             this.yVelocity = 0;
             return;
         }
+
         this.yVelocity = this.yVelocity + acceleration;
         return;
     }
@@ -108,6 +109,7 @@ public class Hero implements Entity {
     @Override
     public void tickBehaviour() {
         this.xPos = this.xPos + this.xVelocity;
+        this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
     }
 
