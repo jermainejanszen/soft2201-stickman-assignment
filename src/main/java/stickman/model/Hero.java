@@ -111,6 +111,28 @@ public class Hero implements Entity {
         this.xPos = this.xPos + this.xVelocity;
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
+
+        // Not moving
+        if (this.xVelocity == 0) {
+            int currentImage = this.imagePath.charAt(this.imagePath.length() - 5) - '0';
+            int nextImage = ((currentImage) % 3) + 1;
+            this.imagePath = String.format("ch_stand%d.png", nextImage);
+        }
+
+        // Moving right
+        if (this.xVelocity > 0) {
+            int currentImage = this.imagePath.charAt(this.imagePath.length() - 5) - '0';
+            int nextImage = ((currentImage) % 4) + 1;
+            this.imagePath = String.format("ch_walk%d.png", nextImage);
+        }
+
+        // Moving left
+        if (this.xVelocity < 0) {
+            int currentImage = this.imagePath.charAt(this.imagePath.length() - 5) - '0';
+            currentImage = currentImage - 4;
+            int nextImage = (currentImage % 4) + 5;
+            this.imagePath = String.format("ch_walk%d.png", nextImage);
+        }
     }
 
     // Hero's constructor
