@@ -81,7 +81,7 @@ public class Cloud implements Entity {
 
     @Override
     public void tickBehaviour() {
-
+        this.xPos = this.xPos + this.xVelocity;
     }
 
     // Cloud's constructor
@@ -102,7 +102,7 @@ public class Cloud implements Entity {
         this.yPos = 30 + randomHeight;
         this.xPos = 100 + randomHeight * 4;
 
-        this.xVelocity = velocity;
+        this.xVelocity = velocity / 10;
         this.yVelocity = 0;
         this.layer = Layer.BACKGROUND;
     }
