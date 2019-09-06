@@ -5,6 +5,7 @@ public class Hero implements Entity {
     private String imagePath;
     private double xPos;
     private double yPos;
+    private double floorHeight;
     private double xVelocity;
     private double yVelocity;
     private double height;
@@ -54,32 +55,60 @@ public class Hero implements Entity {
 
     @Override
     public boolean jump() {
+        if (this.yVelocity == 0) {
+            this.yVelocity = -10.0;
+            return true;
+        }
         return true;
     }
 
     @Override
     public boolean moveRight() {
+        if (this.xVelocity == 0.0) {
+            this.xVelocity = 1.0;
+            return true;
+        } else if (this.xVelocity < 0) {
+            this.xVelocity = 0.0;
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean moveLeft() {
+        if (this.xVelocity == 0.0) {
+            this.xVelocity = -1.0;
+            return true;
+        } else if (this.xVelocity > 0) {
+            this.xVelocity = 0.0;
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean stopMoving() {
+        if (this.xVelocity != 0.0) {
+            this.xVelocity = 0.0;
+            return true;
+        }
         return false;
     }
 
     @Override
     public void applyGravity() {
+        if (this.yPos + this.yVelocity > (this.floorHeight - this.height)) {
+            this.yVelocity = 0;
+            return;
+        }
         this.yVelocity = this.yVelocity + acceleration;
+        return;
     }
 
     @Override
     public void tickBehaviour() {
-
+        this.xPos = this.xPos + this.xVelocity;
+        this.applyGravity();
     }
 
     // Hero's constructor
@@ -108,6 +137,7 @@ public class Hero implements Entity {
             System.exit(1);
         }
         this.yPos = level.getFloorHeight() - this.height;
+        this.floorHeight = level.getFloorHeight();
         this.xVelocity = 0;
         this.yVelocity = 0;
         this.layer = Layer.FOREGROUND;
