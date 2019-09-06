@@ -74,11 +74,8 @@ public class GameEngineImpl implements GameEngine {
 
         this.level = new LevelImpl(entities, 400, 640, 300);
 
-        Hero hero = new Hero(stickmanXPos, stickmanSize, this.level);
-        Cloud cloudOne = new Cloud(cloudVelocity, this.level);
-        Cloud cloudTwo = new Cloud(cloudVelocity, this.level);
-        level.addEntity(hero);
-        level.addEntity(cloudOne);
-        level.addEntity(cloudTwo);
+        level.addEntity(new Hero(stickmanXPos, stickmanSize, this.level));
+        level.addEntity(new Cloud(cloudVelocity, this.level));
+        level.addEntity(new Cloud(cloudVelocity, this.level));
     }
 }

@@ -8,6 +8,7 @@ public class LevelImpl implements Level {
     private double height;
     private double width;
     private double floorHeight;
+    private int tickCounter;
 
     // Level's methods
     @Override
@@ -34,7 +35,31 @@ public class LevelImpl implements Level {
     public void tick() {
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).tickBehaviour();
+
+            // Animate hero sprite
+            if (entities.get(i) instanceof Hero) {
+                Entity hero = entities.get(i);
+
+                // Not moving
+                if (hero.getXVelocity() == 0) {
+                    int nextImage = Math.floorDiv(this.tickCounter, 31) + 1;
+                    hero.setImagePath(String.format("ch_stand%d.png", nextImage));
+                }
+
+                // Moving right
+                if (hero.getXVelocity() > 0) {
+                    int nextImage = Math.floorDiv(this.tickCounter, 23) + 1;
+                    hero.setImagePath(String.format("ch_walk%d.png", nextImage));
+                }
+
+                // Moving left
+                if (hero.getXVelocity() < 0) {
+                    int nextImage = Math.floorDiv(this.tickCounter, 23) + 5;
+                    hero.setImagePath(String.format("ch_walk%d.png", nextImage));
+                }
+            }
         }
+        this.tickCounter = (this.tickCounter + 1) % 90;
         return;
     }
 
@@ -99,5 +124,6 @@ public class LevelImpl implements Level {
         this.height = height;
         this.width = width;
         this.floorHeight = floorHeight;
+        this.tickCounter = 0;
     }
 }

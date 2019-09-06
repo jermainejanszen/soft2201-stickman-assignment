@@ -20,6 +20,11 @@ public class Cloud implements Entity {
     }
 
     @Override
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    @Override
     public double getXPos() {
         return this.xPos;
     }
