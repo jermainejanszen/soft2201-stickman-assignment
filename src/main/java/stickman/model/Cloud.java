@@ -103,9 +103,8 @@ public class Cloud implements Entity {
             this.width = 40;
         }
 
-        int randomHeight = rand.nextInt(40);
-        this.yPos = 30 + randomHeight;
-        this.xPos = 100 + randomHeight * 4;
+        this.yPos = 30 + rand.nextInt(60);
+        this.xPos = -20 + rand.nextInt(200);
 
         this.xVelocity = velocity / 10;
         this.yVelocity = 0;
