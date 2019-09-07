@@ -42,8 +42,24 @@ public class LevelImpl implements Level {
 
                 // Not moving
                 if (hero.getXVelocity() == 0) {
-                    int nextImage = Math.floorDiv(this.tickCounter, 31) + 1;
-                    hero.setImagePath(String.format("ch_stand%d.png", nextImage));
+                    String currentImage = hero.getImagePath();
+                    if (currentImage.charAt(3) == 's') {
+                        if (currentImage.charAt(8) - '0' < 4) {
+                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 1;
+                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
+                        } else {
+                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 4;
+                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
+                        }
+                    } else {
+                        if (currentImage.charAt(7) - '0' < 5) {
+                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 1;
+                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
+                        } else {
+                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 4;
+                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
+                        }
+                    }
                 }
 
                 // Moving right
