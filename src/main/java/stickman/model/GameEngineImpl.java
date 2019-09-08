@@ -26,7 +26,6 @@ public class GameEngineImpl implements GameEngine {
         return;
     }
 
-    // Hero inputs - boolean for success (possibly for sound feedback)
     public boolean jump() {
         return this.level.jump();
     }
@@ -53,7 +52,12 @@ public class GameEngineImpl implements GameEngine {
         this.level.tick();
     }
 
-    // Game engine's constructor
+    /**
+     * Used to construct a Game Engine object to begin the game. Also creates level
+     * with a hero and two clouds.
+     * 
+     * @param jsonPath String to a JSON config file.
+     */
     public GameEngineImpl(String jsonPath) {
         String configFilePath = jsonPath;
         String stickmanSize = null;

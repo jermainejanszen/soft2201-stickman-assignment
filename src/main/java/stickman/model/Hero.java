@@ -118,7 +118,14 @@ public class Hero implements Entity {
         this.applyGravity();
     }
 
-    // Hero's constructor
+    /**
+     * Used to construct a Hero entity object.
+     * 
+     * @param xPos  X position to start the Hero at.
+     * @param size  How large the hero will be. Can be tiny, normal, large, or
+     *              giant.
+     * @param level The level that the hero will be a part of.
+     */
     public Hero(double xPos, String size, Level level) {
         this.imagePath = "ch_stand1.png";
         this.xPos = xPos;

@@ -89,7 +89,12 @@ public class Cloud implements Entity {
         this.xPos = this.xPos + this.xVelocity;
     }
 
-    // Cloud's constructor
+    /**
+     * Used to construct a Cloud entity object.
+     * 
+     * @param velocity The velocity that the cloud will travel at.
+     * @param level    The level that the cloud will be a part of.
+     */
     public Cloud(double velocity, Level level) {
         Random rand = new Random();
         int randomCloud = rand.nextInt(2);

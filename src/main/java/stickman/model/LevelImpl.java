@@ -134,7 +134,15 @@ public class LevelImpl implements Level {
         return false;
     }
 
-    // Level's constructor
+    /**
+     * Used to construct a level with a given height, width, and floor height.
+     * Entities are added to the given list of entities.
+     * 
+     * @param entities    List<Entity> that stores all the entities on a level.
+     * @param height      Double of the height of the level.
+     * @param width       Double of the width of the level.
+     * @param floorHeight Double of the floor height of the level.
+     */
     public LevelImpl(List<Entity> entities, double height, double width, double floorHeight) {
         this.entities = entities;
         this.height = height;
