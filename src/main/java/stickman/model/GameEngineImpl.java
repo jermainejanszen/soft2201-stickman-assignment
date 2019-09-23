@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -45,7 +46,7 @@ public class GameEngineImpl implements GameEngine {
     public void tick() {
         // Randomly add clouds
         Random rand = new Random();
-        if (rand.nextInt(900) == 0) {
+        if (rand.nextInt(4000) == 0) {
             this.level.getEntities().add(new Cloud(this.cloudVelocity, this.level));
         }
 
@@ -59,10 +60,15 @@ public class GameEngineImpl implements GameEngine {
      * @param jsonPath String to a JSON config file.
      */
     public GameEngineImpl(String jsonPath) {
+
+        List<Entity> entities = new ArrayList<Entity>();
+        this.level = new LevelImpl(entities, 400, 640, 300);
+
         String configFilePath = jsonPath;
         String stickmanSize = null;
         double stickmanXPos = -1.0;
         this.cloudVelocity = 0.0;
+        ArrayList<Slime> slimes = new ArrayList<Slime>();
 
         // Begin parsing JSON file
         JSONParser jsonParser = new JSONParser();
@@ -73,6 +79,16 @@ public class GameEngineImpl implements GameEngine {
             stickmanSize = (String) jsonObject.get("stickmanSize");
             stickmanXPos = (double) ((JSONObject) jsonObject.get("stickmanPos")).get("x");
             this.cloudVelocity = (double) jsonObject.get("cloudVelocity");
+            JSONArray jsonSlimes = (JSONArray) jsonObject.get("slimes");
+            JSONArray jsonPlatforms = (JSONArray) jsonObject.get("platforms");
+
+            // Adding the slimes to the level
+            for (int i = 0; i < jsonSlimes.size(); i++) {
+                String slimeColour = (String) ((JSONObject) jsonSlimes.get(i)).get("colour");
+                String slimeSize = (String) ((JSONObject) jsonSlimes.get(i)).get("size");
+                double slimeX = (double) ((JSONObject) jsonSlimes.get(i)).get("x");
+                slimes.add(new Slime(slimeColour, slimeSize, slimeX, this.level));
+            }
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
@@ -82,12 +98,9 @@ public class GameEngineImpl implements GameEngine {
             System.out.println("Parse exception thrown.");
         }
 
-        List<Entity> entities = new ArrayList<Entity>();
-
-        this.level = new LevelImpl(entities, 400, 640, 300);
-
         level.addEntity(new Hero(stickmanXPos, stickmanSize, this.level));
         level.addEntity(new Cloud(this.cloudVelocity, this.level));
         level.addEntity(new Cloud(this.cloudVelocity, this.level));
+
     }
 }

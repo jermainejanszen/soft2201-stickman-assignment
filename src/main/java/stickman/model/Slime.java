@@ -122,7 +122,50 @@ public class Slime implements Entity {
     }
 
     // Slime's contructor
-    public Slime(Level level) {
+    public Slime(String colour, String size, double startX, Level level) {
+        this.floorHeight = level.getFloorHeight();
 
+        switch (colour) {
+        case "r":
+            this.imagePath = "slimeRa.png";
+            break;
+        case "g":
+            this.imagePath = "slimeGa.png";
+            break;
+        case "b":
+            this.imagePath = "slimeBa.png";
+            break;
+        case "y":
+            this.imagePath = "slimeYa.png";
+            break;
+        case "p":
+            this.imagePath = "slimePa.png";
+            break;
+        default:
+            System.out.println("Invalid colour: " + colour);
+            break;
+        }
+
+        switch (size) {
+        case "big":
+            this.height = 40.0;
+            this.width = 53.3;
+            break;
+        case "small":
+            this.height = 20.0;
+            this.width = 26.7;
+            break;
+        default:
+            System.out.println("Invalid slime size: " + size);
+            break;
+        }
+
+        this.xPos = startX;
+        this.yPos = floorHeight;
+
+        this.xVelocity = 0.0;
+        this.yVelocity = 0.0;
+
+        this.layer = Layer.FOREGROUND;
     }
 }
