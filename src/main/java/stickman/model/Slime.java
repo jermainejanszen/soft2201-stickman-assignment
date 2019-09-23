@@ -1,0 +1,128 @@
+package stickman.model;
+
+import java.util.Random;
+
+public class Slime implements Entity {
+
+    // Slime's attributes
+    private String imagePath;
+    private double xPos;
+    private double yPos;
+    private double floorHeight;
+    private double xVelocity;
+    private double yVelocity;
+    private double height;
+    private double width;
+    private Layer layer;
+
+    // Slime's methods
+    @Override
+    public String getImagePath() {
+        return this.imagePath;
+    }
+
+    @Override
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    @Override
+    public double getXPos() {
+        return this.xPos;
+    }
+
+    @Override
+    public double getYPos() {
+        return this.yPos;
+    }
+
+    @Override
+    public double getXVelocity() {
+        return this.xVelocity;
+    }
+
+    @Override
+    public double getYVelocity() {
+        return this.yVelocity;
+    }
+
+    @Override
+    public double getHeight() {
+        return this.height;
+    }
+
+    @Override
+    public double getWidth() {
+        return this.width;
+    }
+
+    @Override
+    public Layer getLayer() {
+        return this.layer;
+    }
+
+    @Override
+    public boolean jump() {
+        if (this.yVelocity == 0) {
+            this.yVelocity = -5.0;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean moveRight() {
+        if (this.xVelocity == 0.0) {
+            this.xVelocity = 1.0;
+            return true;
+        } else if (this.xVelocity < 0) {
+            this.xVelocity = 0.0;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean moveLeft() {
+        if (this.xVelocity == 0.0) {
+            this.xVelocity = -1.0;
+            return true;
+        } else if (this.xVelocity > 0) {
+            this.xVelocity = 0.0;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean stopMoving() {
+        if (this.xVelocity != 0.0) {
+            this.xVelocity = 0.0;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void applyGravity() {
+        if (this.yPos + this.yVelocity > (this.floorHeight - this.height)) {
+            this.yVelocity = 0;
+            return;
+        }
+
+        this.yVelocity = this.yVelocity + acceleration;
+        return;
+    }
+
+    @Override
+    public void tickBehaviour() {
+        this.xPos = this.xPos + this.xVelocity;
+        this.yPos = this.yPos + this.yVelocity;
+        this.applyGravity();
+    }
+
+    // Slime's contructor
+    public Slime(Level level) {
+
+    }
+}
