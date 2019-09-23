@@ -111,7 +111,7 @@ public class Cloud implements Entity {
         this.yPos = 30 + rand.nextInt(60);
         this.xPos = -20 + rand.nextInt(200);
 
-        this.xVelocity = velocity / 10;
+        this.xVelocity = velocity / 60;
         this.yVelocity = 0;
         this.layer = Layer.BACKGROUND;
     }
