@@ -98,6 +98,9 @@ public class GameEngineImpl implements GameEngine {
             System.out.println("Parse exception thrown.");
         }
 
+        for (int i = 0; i < slimes.size(); i++) {
+            level.addEntity(slimes.get(i));
+        }
         level.addEntity(new Hero(stickmanXPos, stickmanSize, this.level));
         level.addEntity(new Cloud(this.cloudVelocity, this.level));
         level.addEntity(new Cloud(this.cloudVelocity, this.level));

@@ -161,7 +161,7 @@ public class Slime implements Entity {
         }
 
         this.xPos = startX;
-        this.yPos = floorHeight;
+        this.yPos = floorHeight - this.height;
 
         this.xVelocity = 0.0;
         this.yVelocity = 0.0;
