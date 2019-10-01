@@ -112,10 +112,49 @@ public class Hero implements Entity {
     }
 
     @Override
-    public void tickBehaviour() {
+    public void tickBehaviour(int tick) {
         this.xPos = this.xPos + this.xVelocity;
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
+        this.animate(tick);
+    }
+
+    public void animate(int tick) {
+        int loopTick = tick % 90;
+
+        // Not moving
+        if (this.xVelocity == 0) {
+            String currentImage = this.imagePath;
+            if (currentImage.charAt(3) == 's') {
+                if (currentImage.charAt(8) - '0' < 4) {
+                    int nextImage = Math.floorDiv(loopTick, 31) + 1;
+                    this.imagePath = (String.format("ch_stand%d.png", nextImage));
+                } else {
+                    int nextImage = Math.floorDiv(loopTick, 31) + 4;
+                    this.imagePath = (String.format("ch_stand%d.png", nextImage));
+                }
+            } else {
+                if (currentImage.charAt(7) - '0' < 5) {
+                    int nextImage = Math.floorDiv(loopTick, 31) + 1;
+                    this.imagePath = (String.format("ch_stand%d.png", nextImage));
+                } else {
+                    int nextImage = Math.floorDiv(loopTick, 31) + 4;
+                    this.imagePath = (String.format("ch_stand%d.png", nextImage));
+                }
+            }
+        }
+
+        // Moving right
+        if (this.xVelocity > 0) {
+            int nextImage = Math.floorDiv(loopTick, 23) + 1;
+            this.imagePath = (String.format("ch_walk%d.png", nextImage));
+        }
+
+        // Moving left
+        if (this.xVelocity < 0) {
+            int nextImage = Math.floorDiv(loopTick, 23) + 5;
+            this.imagePath = (String.format("ch_walk%d.png", nextImage));
+        }
     }
 
     /**

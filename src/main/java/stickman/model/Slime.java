@@ -115,7 +115,7 @@ public class Slime implements Entity {
     }
 
     @Override
-    public void tickBehaviour() {
+    public void tickBehaviour(int tick) {
         this.xPos = this.xPos + this.xVelocity;
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();

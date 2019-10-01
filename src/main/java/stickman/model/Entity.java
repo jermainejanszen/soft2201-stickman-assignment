@@ -97,7 +97,7 @@ public interface Entity extends Gravity {
      * 
      * @return boolean
      */
-    void tickBehaviour();
+    void tickBehaviour(int tick);
 
     enum Layer {
         BACKGROUND, FOREGROUND, EFFECT

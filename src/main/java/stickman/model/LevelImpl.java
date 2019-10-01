@@ -34,48 +34,9 @@ public class LevelImpl implements Level {
     @Override
     public void tick() {
         for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).tickBehaviour();
-
-            // Animate hero sprite
-            if (entities.get(i) instanceof Hero) {
-                Entity hero = entities.get(i);
-
-                // Not moving
-                if (hero.getXVelocity() == 0) {
-                    String currentImage = hero.getImagePath();
-                    if (currentImage.charAt(3) == 's') {
-                        if (currentImage.charAt(8) - '0' < 4) {
-                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 1;
-                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
-                        } else {
-                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 4;
-                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
-                        }
-                    } else {
-                        if (currentImage.charAt(7) - '0' < 5) {
-                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 1;
-                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
-                        } else {
-                            int nextImage = Math.floorDiv(this.tickCounter, 31) + 4;
-                            hero.setImagePath(String.format("ch_stand%d.png", nextImage));
-                        }
-                    }
-                }
-
-                // Moving right
-                if (hero.getXVelocity() > 0) {
-                    int nextImage = Math.floorDiv(this.tickCounter, 23) + 1;
-                    hero.setImagePath(String.format("ch_walk%d.png", nextImage));
-                }
-
-                // Moving left
-                if (hero.getXVelocity() < 0) {
-                    int nextImage = Math.floorDiv(this.tickCounter, 23) + 5;
-                    hero.setImagePath(String.format("ch_walk%d.png", nextImage));
-                }
-            }
+            entities.get(i).tickBehaviour(this.tickCounter);
         }
-        this.tickCounter = (this.tickCounter + 1) % 90;
+        this.tickCounter = this.tickCounter + 1;
         return;
     }
 

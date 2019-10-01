@@ -85,7 +85,7 @@ public class Cloud implements Entity {
     }
 
     @Override
-    public void tickBehaviour() {
+    public void tickBehaviour(int tick) {
         this.xPos = this.xPos + this.xVelocity;
     }
 
