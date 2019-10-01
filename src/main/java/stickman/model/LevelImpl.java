@@ -1,10 +1,12 @@
 package stickman.model;
 
 import java.util.List;
+import java.util.Random;
 
 public class LevelImpl implements Level {
     // Level's attributes
     private List<Entity> entities;
+    private double cloudVelocity;
     private double height;
     private double width;
     private double floorHeight;
@@ -32,7 +34,18 @@ public class LevelImpl implements Level {
     }
 
     @Override
+    public void setCloudVelocity(double cloudVelocity) {
+        this.cloudVelocity = cloudVelocity;
+    }
+
+    @Override
     public void tick() {
+        // Randomly add clouds
+        Random rand = new Random();
+        if (rand.nextInt(4000) == 0) {
+            this.entities.add(new Cloud(this.cloudVelocity, this));
+        }
+
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).tickBehaviour(this.tickCounter);
         }

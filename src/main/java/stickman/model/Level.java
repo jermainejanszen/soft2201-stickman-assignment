@@ -33,6 +33,13 @@ public interface Level {
     double getWidth();
 
     /**
+     * Used to set the cloud velocity of a level.
+     * 
+     * @param CloudVelocity
+     */
+    void setCloudVelocity(double CloudVelocity);
+
+    /**
      * Used to make computations and changes each tick.
      */
     void tick();
