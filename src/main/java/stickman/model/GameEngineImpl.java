@@ -4,6 +4,7 @@ public class GameEngineImpl implements GameEngine {
     // Game engine's attributes
     private Level level;
     private String currentLevelPath;
+    private String nextLevelPath;
 
     // Game Engine's methods
     public Level getCurrentLevel() {
@@ -35,7 +36,14 @@ public class GameEngineImpl implements GameEngine {
         for (Entity entity : this.level.getEntities()) {
             if (entity instanceof Hero) {
                 if (((Hero) entity).getLives() == 0) {
-                    this.level = LevelFactory.levelMake(currentLevelPath);
+                    this.level = LevelFactory.levelMake(currentLevelPath).level;
+                }
+            } else if (entity instanceof FinishLine) {
+                if (((FinishLine) entity).isLevelComplete()) {
+                    LevelNode nextLevel = LevelFactory.levelMake(nextLevelPath);
+                    this.level = nextLevel.level;
+                    this.currentLevelPath = nextLevelPath;
+                    this.nextLevelPath = nextLevel.nextLevelPath;
                 }
             }
         }
@@ -51,7 +59,9 @@ public class GameEngineImpl implements GameEngine {
      */
     public GameEngineImpl(String jsonPath) {
         this.currentLevelPath = jsonPath;
-        this.level = LevelFactory.levelMake(jsonPath);
+        LevelNode currentLevel = LevelFactory.levelMake(jsonPath);
+        this.level = currentLevel.level;
+        this.nextLevelPath = currentLevel.nextLevelPath;
 
     }
 }

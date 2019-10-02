@@ -128,6 +128,23 @@ public class Slime implements Entity {
             if (collision == collisionType.BOTTOM) {
                 this.die = true;
             }
+        } else if (entityB instanceof Platform) {
+            switch (collision) {
+            case LEFT:
+                this.xVelocity = -this.xVelocity;
+                break;
+            case RIGHT:
+                this.xVelocity = -this.yVelocity;
+                break;
+            case TOP:
+                this.yVelocity = 0.0;
+                break;
+            case BOTTOM:
+                this.yVelocity = 0.5;
+                break;
+            default:
+                break;
+            }
         }
         return;
     }

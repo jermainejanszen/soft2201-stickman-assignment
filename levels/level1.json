@@ -26,5 +26,15 @@
 		{ "x": 40.0, "y": 250.0, "width": 40.0 }
 	],
 
-	"_platformsComment": "Platforms have a fixed height of 20 pixels."
+	"_platformsComment": "Platforms have a fixed height of 20 pixels.",
+
+	"finishLinePos": {
+		"x": 300.0
+	},
+
+	"_finishLinePosComment": "The position of the finish line for the level.",
+
+	"nextLevel": "levels/level2.json",
+
+	"_nextLevelComment": "The path to the next level's config file."
 }

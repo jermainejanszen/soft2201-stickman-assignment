@@ -2,7 +2,8 @@ package stickman.model;
 
 import stickman.model.LevelImpl.collisionType;
 
-public class Platform implements Entity {
+public class FinishLine implements Entity {
+
     private String imagePath;
     private double xPos;
     private double yPos;
@@ -11,10 +12,11 @@ public class Platform implements Entity {
     private double height;
     private double width;
     private Layer layer;
+    private boolean levelComplete;
 
     @Override
     public void applyGravity() {
-        // No action needed
+        return;
     }
 
     @Override
@@ -25,7 +27,6 @@ public class Platform implements Entity {
     @Override
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-        return;
     }
 
     @Override
@@ -63,6 +64,10 @@ public class Platform implements Entity {
         return this.layer;
     }
 
+    public boolean isLevelComplete() {
+        return this.levelComplete;
+    }
+
     @Override
     public boolean jump() {
         return false;
@@ -70,34 +75,16 @@ public class Platform implements Entity {
 
     @Override
     public boolean moveRight() {
-        if (this.xVelocity == 0.0) {
-            this.xVelocity = 1.0;
-            return true;
-        } else if (this.xVelocity < 0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
         return false;
     }
 
     @Override
     public boolean moveLeft() {
-        if (this.xVelocity == 0.0) {
-            this.xVelocity = -1.0;
-            return true;
-        } else if (this.xVelocity > 0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
         return false;
     }
 
     @Override
     public boolean stopMoving() {
-        if (this.xVelocity != 0.0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
         return false;
     }
 
@@ -108,21 +95,21 @@ public class Platform implements Entity {
 
     @Override
     public void collisionBehaviour(collisionType collision, Entity entityB) {
+        if (entityB instanceof Hero) {
+            this.levelComplete = true;
+        }
         return;
     }
 
-    public Platform(double xPos, double yPos, double width, Level level) {
+    public FinishLine(double xPos, Level level) {
+        this.imagePath = "tree.png";
+        this.height = 30.8;
+        this.width = 20.0;
         this.xPos = xPos;
-        this.width = width;
-        this.height = 10.0;
-        if (yPos > level.getFloorHeight() - this.height) {
-            this.yPos = level.getFloorHeight() - this.height;
-        } else {
-            this.yPos = yPos;
-        }
-        this.xVelocity = 0;
-        this.yVelocity = 0;
-        this.imagePath = "foot_tile.png";
+        this.yPos = level.getFloorHeight() - this.height;
+        this.xVelocity = 0.0;
+        this.yVelocity = 0.0;
         this.layer = Layer.FOREGROUND;
+        this.levelComplete = false;
     }
 }

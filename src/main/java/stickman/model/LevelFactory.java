@@ -14,17 +14,19 @@ import org.json.simple.parser.ParseException;
 
 public class LevelFactory {
 
-    public static Level levelMake(String jsonPath) {
+    public static LevelNode levelMake(String jsonPath) {
         List<Entity> entities = new ArrayList<Entity>();
         Level newLevel = new LevelImpl(entities, 400, 640, 300);
 
         String configFilePath = jsonPath;
+        String nextLevelFilePath = null;
         String stickmanSize = null;
         double stickmanXPos = -1.0;
         double cloudVelocity = 0.0;
         newLevel.setCloudVelocity(cloudVelocity);
         ArrayList<Slime> slimes = new ArrayList<Slime>();
         ArrayList<Platform> platforms = new ArrayList<Platform>();
+        double finishLineXPos = -1.0;
 
         // Begin parsing JSON file
         JSONParser jsonParser = new JSONParser();
@@ -32,6 +34,8 @@ public class LevelFactory {
             Object obj = jsonParser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
 
+            nextLevelFilePath = (String) jsonObject.get("nextLevel");
+            finishLineXPos = (double) ((JSONObject) jsonObject.get("finishLinePos")).get("x");
             stickmanSize = (String) jsonObject.get("stickmanSize");
             stickmanXPos = (double) ((JSONObject) jsonObject.get("stickmanPos")).get("x");
             cloudVelocity = (double) jsonObject.get("cloudVelocity");
@@ -72,8 +76,9 @@ public class LevelFactory {
         newLevel.addEntity(new Hero(stickmanXPos, stickmanSize, newLevel));
         newLevel.addEntity(new Cloud(cloudVelocity, newLevel));
         newLevel.addEntity(new Cloud(cloudVelocity, newLevel));
+        newLevel.addEntity(new FinishLine(finishLineXPos, newLevel));
 
-        return newLevel;
+        return new LevelNode(newLevel, nextLevelFilePath);
     }
 
 }
