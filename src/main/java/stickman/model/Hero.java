@@ -1,5 +1,7 @@
 package stickman.model;
 
+import stickman.model.LevelImpl.collisionType;
+
 public class Hero implements Entity {
     // Hero's attributes
     private String imagePath;
@@ -11,6 +13,7 @@ public class Hero implements Entity {
     private double height;
     private double width;
     private Layer layer;
+    public int lives;
 
     // Hero's methods
     @Override
@@ -56,6 +59,10 @@ public class Hero implements Entity {
     @Override
     public Layer getLayer() {
         return this.layer;
+    }
+
+    public int getLives() {
+        return this.lives;
     }
 
     @Override
@@ -117,6 +124,16 @@ public class Hero implements Entity {
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
         this.animate(tick);
+    }
+
+    @Override
+    public void collisionBehaviour(LevelImpl.collisionType collision, Entity entityB) {
+        if (entityB instanceof Slime) {
+            if (collision == collisionType.LEFT || collision == collisionType.RIGHT) {
+                this.lives = this.lives - 1;
+            }
+        }
+        return;
     }
 
     public void animate(int tick) {
@@ -194,5 +211,6 @@ public class Hero implements Entity {
         this.xVelocity = 0;
         this.yVelocity = 0;
         this.layer = Layer.FOREGROUND;
+        this.lives = 3;
     }
 }

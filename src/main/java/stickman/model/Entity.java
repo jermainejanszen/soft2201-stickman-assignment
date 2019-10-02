@@ -93,11 +93,19 @@ public interface Entity extends Gravity {
     boolean stopMoving();
 
     /**
-     * Used to copmute any changes an entity undergoes each tick.
+     * Used to compute any changes an entity undergoes each tick.
      * 
-     * @return boolean
+     * @param int Current tick
      */
     void tickBehaviour(int tick);
+
+    /**
+     * Used to compute the changes an entity undergoes after colliding with another.
+     * 
+     * @param collision The direction of the collision.
+     * @param entityB   The other entity it has collided with.
+     */
+    void collisionBehaviour(LevelImpl.collisionType collision, Entity entityB);
 
     enum Layer {
         BACKGROUND, FOREGROUND, EFFECT

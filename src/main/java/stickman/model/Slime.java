@@ -1,6 +1,6 @@
 package stickman.model;
 
-import java.util.Random;
+import stickman.model.LevelImpl.collisionType;
 
 public class Slime implements Entity {
 
@@ -14,6 +14,7 @@ public class Slime implements Entity {
     private double height;
     private double width;
     private Layer layer;
+    public boolean die;
 
     // Slime's methods
     @Override
@@ -119,6 +120,16 @@ public class Slime implements Entity {
         this.xPos = this.xPos + this.xVelocity;
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
+    }
+
+    @Override
+    public void collisionBehaviour(LevelImpl.collisionType collision, Entity entityB) {
+        if (entityB instanceof Hero) {
+            if (collision == collisionType.BOTTOM) {
+                this.die = true;
+            }
+        }
+        return;
     }
 
     // Slime's contructor

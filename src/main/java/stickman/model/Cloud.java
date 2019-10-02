@@ -89,6 +89,11 @@ public class Cloud implements Entity {
         this.xPos = this.xPos + this.xVelocity;
     }
 
+    @Override
+    public void collisionBehaviour(LevelImpl.collisionType collision, Entity entityB) {
+        return;
+    }
+
     /**
      * Used to construct a Cloud entity object.
      * 

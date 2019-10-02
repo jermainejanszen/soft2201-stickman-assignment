@@ -3,6 +3,7 @@ package stickman.model;
 public class GameEngineImpl implements GameEngine {
     // Game engine's attributes
     private Level level;
+    private String currentLevelPath;
 
     // Game Engine's methods
     public Level getCurrentLevel() {
@@ -30,6 +31,15 @@ public class GameEngineImpl implements GameEngine {
     }
 
     public void tick() {
+        // Reset the level if the hero runs out of lives
+        for (Entity entity : this.level.getEntities()) {
+            if (entity instanceof Hero) {
+                if (((Hero) entity).lives == 0) {
+                    this.level = LevelFactory.levelMake(currentLevelPath);
+                }
+            }
+        }
+
         this.level.tick();
     }
 
@@ -40,6 +50,7 @@ public class GameEngineImpl implements GameEngine {
      * @param jsonPath String to a JSON config file.
      */
     public GameEngineImpl(String jsonPath) {
+        this.currentLevelPath = jsonPath;
         this.level = LevelFactory.levelMake(jsonPath);
 
     }

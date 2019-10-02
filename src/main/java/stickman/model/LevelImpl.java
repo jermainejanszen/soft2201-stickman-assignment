@@ -46,13 +46,21 @@ public class LevelImpl implements Level {
             this.entities.add(new Cloud(this.cloudVelocity, this));
         }
 
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).tickBehaviour(this.tickCounter);
-        }
-
         for (Entity entityA : entities) {
+            if (entityA instanceof Slime) {
+                if (((Slime) entityA).die) {
+                    entities.remove(entityA);
+                    continue;
+                }
+            }
+
+            entityA.tickBehaviour(tickCounter);
+
             for (Entity entityB : entities) {
-                checkCollision(entityA, entityB);
+                collisionType collision = checkCollision(entityA, entityB);
+                if (collision != collisionType.NONE) {
+                    handleCollision(entityA, entityB, collision);
+                }
             }
         }
 
@@ -119,7 +127,7 @@ public class LevelImpl implements Level {
         TOP, BOTTOM, LEFT, RIGHT, NONE
     }
 
-    public collisionType checkCollision(Entity entityA, Entity entityB) {
+    private collisionType checkCollision(Entity entityA, Entity entityB) {
         if (entityA == entityB) {
             return collisionType.NONE;
         }
@@ -153,6 +161,11 @@ public class LevelImpl implements Level {
         } else {
             return collisionType.NONE;
         }
+    }
+
+    private void handleCollision(Entity entityA, Entity entityB, collisionType collision) {
+        entityA.collisionBehaviour(collision, entityB);
+        return;
     }
 
     /**
