@@ -148,6 +148,23 @@ public class Hero implements Entity {
                     invulnerability = true;
                 }
             }
+        } else if (entityB instanceof Platform) {
+            switch (collision) {
+            case LEFT:
+                this.xVelocity = -0.1;
+                break;
+            case RIGHT:
+                this.xVelocity = 0.1;
+                break;
+            case TOP:
+                this.yVelocity = 0.0;
+                break;
+            case BOTTOM:
+                this.yVelocity = 0.5;
+                break;
+            default:
+                break;
+            }
         }
         return;
     }

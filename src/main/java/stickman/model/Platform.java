@@ -120,7 +120,7 @@ public class Platform implements Entity {
         }
         this.width = width;
 
-        this.height = 8.0;
+        this.height = 10.0;
         this.xVelocity = 0;
         this.yVelocity = 0;
         this.imagePath = "foot_tile.png";

@@ -21,10 +21,14 @@ public class EntityViewImpl implements EntityView {
 
     private double getViewOrder(Entity.Layer layer) {
         switch (layer) {
-            case BACKGROUND: return 100.0;
-            case FOREGROUND: return 50.0;
-            case EFFECT: return 25.0;
-            default: throw new IllegalStateException("Javac doesn't understand how enums work so now I have to exist");
+        case BACKGROUND:
+            return 100.0;
+        case FOREGROUND:
+            return 50.0;
+        case EFFECT:
+            return 25.0;
+        default:
+            throw new IllegalStateException("Javac doesn't understand how enums work so now I have to exist");
         }
     }
 
@@ -39,7 +43,7 @@ public class EntityViewImpl implements EntityView {
         node.setY(entity.getYPos());
         node.setFitHeight(entity.getHeight());
         node.setFitWidth(entity.getWidth());
-        node.setPreserveRatio(true);
+        node.setPreserveRatio(false);
         delete = false;
     }
 
