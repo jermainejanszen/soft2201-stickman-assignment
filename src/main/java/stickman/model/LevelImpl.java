@@ -46,14 +46,15 @@ public class LevelImpl implements Level {
             this.entities.add(new Cloud(this.cloudVelocity, this));
         }
 
-        for (Entity entityA : entities) {
-            if (entityA instanceof Slime) {
-                if (((Slime) entityA).die) {
-                    entities.remove(entityA);
-                    continue;
+        for (int i = entities.size() - 1; i > -1; i--) {
+            if (entities.get(i) instanceof Slime) {
+                if (((Slime) entities.get(i)).die) {
+                    entities.remove(entities.get(i));
                 }
             }
+        }
 
+        for (Entity entityA : entities) {
             entityA.tickBehaviour(tickCounter);
 
             for (Entity entityB : entities) {
@@ -147,11 +148,9 @@ public class LevelImpl implements Level {
 
         if (collision) {
             if (Math.abs(entityA.getYPos() + entityA.getHeight() - entityB.getYPos()) < entityB.getHeight() * 0.25) {
-                System.out.println("TOP");
                 return collisionType.TOP;
             } else if (Math.abs(entityB.getYPos() + entityB.getHeight() - entityA.getYPos()) < entityA.getHeight()
                     * 0.25) {
-                System.out.println("BOTTOM");
                 return collisionType.BOTTOM;
             } else if (entityA.getXPos() < entityB.getXPos()) {
                 return collisionType.LEFT;

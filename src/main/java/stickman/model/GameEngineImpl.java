@@ -34,7 +34,7 @@ public class GameEngineImpl implements GameEngine {
         // Reset the level if the hero runs out of lives
         for (Entity entity : this.level.getEntities()) {
             if (entity instanceof Hero) {
-                if (((Hero) entity).lives == 0) {
+                if (((Hero) entity).getLives() == 0) {
                     this.level = LevelFactory.levelMake(currentLevelPath);
                 }
             }

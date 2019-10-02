@@ -13,7 +13,9 @@ public class Hero implements Entity {
     private double height;
     private double width;
     private Layer layer;
-    public int lives;
+    private int lives;
+    private boolean invulnerability;
+    private int invulnerabilityTicks;
 
     // Hero's methods
     @Override
@@ -63,6 +65,10 @@ public class Hero implements Entity {
 
     public int getLives() {
         return this.lives;
+    }
+
+    public boolean isInvulnerable() {
+        return this.invulnerability;
     }
 
     @Override
@@ -124,13 +130,23 @@ public class Hero implements Entity {
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
         this.animate(tick);
+        if (invulnerability) {
+            if (invulnerabilityTicks == 60) {
+                invulnerability = false;
+                invulnerabilityTicks = 0;
+            }
+            invulnerabilityTicks++;
+        }
     }
 
     @Override
     public void collisionBehaviour(LevelImpl.collisionType collision, Entity entityB) {
         if (entityB instanceof Slime) {
             if (collision == collisionType.LEFT || collision == collisionType.RIGHT) {
-                this.lives = this.lives - 1;
+                if (!invulnerability) {
+                    this.lives = this.lives - 1;
+                    invulnerability = true;
+                }
             }
         }
         return;
@@ -212,5 +228,6 @@ public class Hero implements Entity {
         this.yVelocity = 0;
         this.layer = Layer.FOREGROUND;
         this.lives = 3;
+        this.invulnerability = false;
     }
 }
