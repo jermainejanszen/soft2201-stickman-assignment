@@ -24,6 +24,7 @@ public class LevelFactory {
         double cloudVelocity = 0.0;
         newLevel.setCloudVelocity(cloudVelocity);
         ArrayList<Slime> slimes = new ArrayList<Slime>();
+        ArrayList<Platform> platforms = new ArrayList<Platform>();
 
         // Begin parsing JSON file
         JSONParser jsonParser = new JSONParser();
@@ -46,6 +47,14 @@ public class LevelFactory {
                 slimes.add(new Slime(slimeColour, slimeSize, slimeX, newLevel));
             }
 
+            // Adding the platforms to the level
+            for (int i = 0; i < jsonPlatforms.size(); i++) {
+                double platformX = (double) ((JSONObject) jsonPlatforms.get(i)).get("x");
+                double platformY = (double) ((JSONObject) jsonPlatforms.get(i)).get("y");
+                double platformWidth = (double) ((JSONObject) jsonPlatforms.get(i)).get("width");
+                platforms.add(new Platform(platformX, platformY, platformWidth, newLevel));
+            }
+
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         } catch (IOException e) {
@@ -56,6 +65,9 @@ public class LevelFactory {
 
         for (int i = 0; i < slimes.size(); i++) {
             newLevel.addEntity(slimes.get(i));
+        }
+        for (int i = 0; i < platforms.size(); i++) {
+            newLevel.addEntity(platforms.get(i));
         }
         newLevel.addEntity(new Hero(stickmanXPos, stickmanSize, newLevel));
         newLevel.addEntity(new Cloud(cloudVelocity, newLevel));
