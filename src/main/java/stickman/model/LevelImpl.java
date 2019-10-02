@@ -49,6 +49,13 @@ public class LevelImpl implements Level {
         for (int i = 0; i < entities.size(); i++) {
             entities.get(i).tickBehaviour(this.tickCounter);
         }
+
+        for (Entity entityA : entities) {
+            for (Entity entityB : entities) {
+                checkCollision(entityA, entityB);
+            }
+        }
+
         this.tickCounter = this.tickCounter + 1;
         return;
     }
@@ -106,6 +113,46 @@ public class LevelImpl implements Level {
             }
         }
         return false;
+    }
+
+    enum collisionType {
+        TOP, BOTTOM, LEFT, RIGHT, NONE
+    }
+
+    public collisionType checkCollision(Entity entityA, Entity entityB) {
+        if (entityA == entityB) {
+            return collisionType.NONE;
+        }
+
+        if (entityA instanceof Cloud || entityB instanceof Cloud) {
+            return collisionType.NONE;
+        }
+
+        boolean collision = false;
+
+        if (entityA.getXPos() < (entityB.getXPos() + entityB.getWidth())
+                && ((entityA.getXPos() + entityA.getWidth()) > entityB.getXPos())
+                && (entityA.getYPos() < (entityB.getYPos() + entityB.getHeight()))
+                && ((entityA.getYPos() + entityA.getHeight()) > entityB.getYPos())) {
+            collision = true;
+        }
+
+        if (collision) {
+            if (Math.abs(entityA.getYPos() + entityA.getHeight() - entityB.getYPos()) < entityB.getHeight() * 0.25) {
+                System.out.println("TOP");
+                return collisionType.TOP;
+            } else if (Math.abs(entityB.getYPos() + entityB.getHeight() - entityA.getYPos()) < entityA.getHeight()
+                    * 0.25) {
+                System.out.println("BOTTOM");
+                return collisionType.BOTTOM;
+            } else if (entityA.getXPos() < entityB.getXPos()) {
+                return collisionType.LEFT;
+            } else {
+                return collisionType.RIGHT;
+            }
+        } else {
+            return collisionType.NONE;
+        }
     }
 
     /**
