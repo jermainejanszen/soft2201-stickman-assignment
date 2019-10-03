@@ -48,7 +48,25 @@ public class LevelFactory {
                 String slimeColour = (String) ((JSONObject) jsonSlimes.get(i)).get("colour");
                 String slimeSize = (String) ((JSONObject) jsonSlimes.get(i)).get("size");
                 double slimeX = (double) ((JSONObject) jsonSlimes.get(i)).get("x");
-                slimes.add(new Slime(slimeColour, slimeSize, slimeX, newLevel));
+                switch (slimeColour) {
+                case "r":
+                    slimes.add(new RedSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    break;
+                case "g":
+                    slimes.add(new GreenSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    break;
+                case "b":
+                    slimes.add(new BlueSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    break;
+                case "y":
+                    slimes.add(new YellowSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    break;
+                case "p":
+                    slimes.add(new PurpleSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    break;
+                default:
+                    System.out.println("'" + slimeColour + "' is an invalid slime colour.");
+                }
             }
 
             // Adding the platforms to the level
