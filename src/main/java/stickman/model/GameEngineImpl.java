@@ -6,6 +6,20 @@ public class GameEngineImpl implements GameEngine {
     private String currentLevelPath;
     private String nextLevelPath;
 
+    /**
+     * Used to construct a Game Engine object to begin the game. Also creates level
+     * with a hero and two clouds.
+     * 
+     * @param jsonPath String to a JSON config file.
+     */
+    public GameEngineImpl(String jsonPath) {
+        this.currentLevelPath = jsonPath;
+        LevelNode currentLevel = LevelFactory.levelMake(jsonPath);
+        this.level = currentLevel.level;
+        this.nextLevelPath = currentLevel.nextLevelPath;
+
+    }
+
     // Game Engine's methods
     public Level getCurrentLevel() {
         return this.level;
@@ -49,19 +63,5 @@ public class GameEngineImpl implements GameEngine {
         }
 
         this.level.tick();
-    }
-
-    /**
-     * Used to construct a Game Engine object to begin the game. Also creates level
-     * with a hero and two clouds.
-     * 
-     * @param jsonPath String to a JSON config file.
-     */
-    public GameEngineImpl(String jsonPath) {
-        this.currentLevelPath = jsonPath;
-        LevelNode currentLevel = LevelFactory.levelMake(jsonPath);
-        this.level = currentLevel.level;
-        this.nextLevelPath = currentLevel.nextLevelPath;
-
     }
 }

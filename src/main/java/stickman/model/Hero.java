@@ -17,6 +17,47 @@ public class Hero implements Entity {
     private boolean invulnerability;
     private int invulnerabilityTicks;
 
+    /**
+     * Used to construct a Hero entity object.
+     * 
+     * @param xPos  X position to start the Hero at.
+     * @param size  How large the hero will be. Can be tiny, normal, large, or
+     *              giant.
+     * @param level The level that the hero will be a part of.
+     */
+    public Hero(double xPos, String size, Level level) {
+        this.imagePath = "ch_stand1.png";
+        this.xPos = xPos;
+        switch (size) {
+        case "tiny":
+            this.height = 17;
+            this.width = 10;
+            break;
+        case "normal":
+            this.height = 34;
+            this.width = 20;
+            break;
+        case "large":
+            this.height = 51;
+            this.width = 30;
+            break;
+        case "giant":
+            this.height = 68;
+            this.width = 40;
+            break;
+        default:
+            System.out.println("Invalid hero size.");
+            System.exit(1);
+        }
+        this.yPos = level.getFloorHeight() - this.height;
+        this.floorHeight = level.getFloorHeight();
+        this.xVelocity = 0;
+        this.yVelocity = 0;
+        this.layer = Layer.FOREGROUND;
+        this.lives = 3;
+        this.invulnerability = false;
+    }
+
     // Hero's methods
     @Override
     public String getImagePath() {
@@ -216,46 +257,5 @@ public class Hero implements Entity {
             int nextImage = Math.floorDiv(loopTick, 23) + 5;
             this.imagePath = (String.format("ch_walk%d.png", nextImage));
         }
-    }
-
-    /**
-     * Used to construct a Hero entity object.
-     * 
-     * @param xPos  X position to start the Hero at.
-     * @param size  How large the hero will be. Can be tiny, normal, large, or
-     *              giant.
-     * @param level The level that the hero will be a part of.
-     */
-    public Hero(double xPos, String size, Level level) {
-        this.imagePath = "ch_stand1.png";
-        this.xPos = xPos;
-        switch (size) {
-        case "tiny":
-            this.height = 17;
-            this.width = 10;
-            break;
-        case "normal":
-            this.height = 34;
-            this.width = 20;
-            break;
-        case "large":
-            this.height = 51;
-            this.width = 30;
-            break;
-        case "giant":
-            this.height = 68;
-            this.width = 40;
-            break;
-        default:
-            System.out.println("Invalid hero size.");
-            System.exit(1);
-        }
-        this.yPos = level.getFloorHeight() - this.height;
-        this.floorHeight = level.getFloorHeight();
-        this.xVelocity = 0;
-        this.yVelocity = 0;
-        this.layer = Layer.FOREGROUND;
-        this.lives = 3;
-        this.invulnerability = false;
     }
 }

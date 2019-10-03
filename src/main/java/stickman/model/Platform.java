@@ -12,6 +12,21 @@ public class Platform implements Entity {
     private double width;
     private Layer layer;
 
+    public Platform(double xPos, double yPos, double width, Level level) {
+        this.xPos = xPos;
+        this.width = width;
+        this.height = 10.0;
+        if (yPos > level.getFloorHeight() - this.height) {
+            this.yPos = level.getFloorHeight() - this.height;
+        } else {
+            this.yPos = yPos;
+        }
+        this.xVelocity = 0;
+        this.yVelocity = 0;
+        this.imagePath = "foot_tile.png";
+        this.layer = Layer.FOREGROUND;
+    }
+
     @Override
     public void applyGravity() {
         // No action needed
@@ -95,20 +110,5 @@ public class Platform implements Entity {
     @Override
     public void collisionBehaviour(collisionType collision, Entity entityB) {
         return;
-    }
-
-    public Platform(double xPos, double yPos, double width, Level level) {
-        this.xPos = xPos;
-        this.width = width;
-        this.height = 10.0;
-        if (yPos > level.getFloorHeight() - this.height) {
-            this.yPos = level.getFloorHeight() - this.height;
-        } else {
-            this.yPos = yPos;
-        }
-        this.xVelocity = 0;
-        this.yVelocity = 0;
-        this.imagePath = "foot_tile.png";
-        this.layer = Layer.FOREGROUND;
     }
 }

@@ -12,6 +12,23 @@ public class LevelImpl implements Level {
     private double floorHeight;
     private int tickCounter;
 
+    /**
+     * Used to construct a level with a given height, width, and floor height.
+     * Entities are added to the given list of entities.
+     * 
+     * @param entities    List<Entity> that stores all the entities on a level.
+     * @param height      Double of the height of the level.
+     * @param width       Double of the width of the level.
+     * @param floorHeight Double of the floor height of the level.
+     */
+    public LevelImpl(List<Entity> entities, double height, double width, double floorHeight) {
+        this.entities = entities;
+        this.height = height;
+        this.width = width;
+        this.floorHeight = floorHeight;
+        this.tickCounter = 0;
+    }
+
     // Level's methods
     @Override
     public List<Entity> getEntities() {
@@ -175,22 +192,5 @@ public class LevelImpl implements Level {
     private void handleCollision(Entity entityA, Entity entityB, collisionType collision) {
         entityA.collisionBehaviour(collision, entityB);
         return;
-    }
-
-    /**
-     * Used to construct a level with a given height, width, and floor height.
-     * Entities are added to the given list of entities.
-     * 
-     * @param entities    List<Entity> that stores all the entities on a level.
-     * @param height      Double of the height of the level.
-     * @param width       Double of the width of the level.
-     * @param floorHeight Double of the floor height of the level.
-     */
-    public LevelImpl(List<Entity> entities, double height, double width, double floorHeight) {
-        this.entities = entities;
-        this.height = height;
-        this.width = width;
-        this.floorHeight = floorHeight;
-        this.tickCounter = 0;
     }
 }

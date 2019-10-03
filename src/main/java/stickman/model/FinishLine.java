@@ -14,6 +14,18 @@ public class FinishLine implements Entity {
     private Layer layer;
     private boolean levelComplete;
 
+    public FinishLine(double xPos, Level level) {
+        this.imagePath = "finish.png";
+        this.height = 30.8;
+        this.width = 20.0;
+        this.xPos = xPos;
+        this.yPos = level.getFloorHeight() - this.height;
+        this.xVelocity = 0.0;
+        this.yVelocity = 0.0;
+        this.layer = Layer.FOREGROUND;
+        this.levelComplete = false;
+    }
+
     @Override
     public void applyGravity() {
         return;
@@ -99,17 +111,5 @@ public class FinishLine implements Entity {
             this.levelComplete = true;
         }
         return;
-    }
-
-    public FinishLine(double xPos, Level level) {
-        this.imagePath = "finish.png";
-        this.height = 30.8;
-        this.width = 20.0;
-        this.xPos = xPos;
-        this.yPos = level.getFloorHeight() - this.height;
-        this.xVelocity = 0.0;
-        this.yVelocity = 0.0;
-        this.layer = Layer.FOREGROUND;
-        this.levelComplete = false;
     }
 }
