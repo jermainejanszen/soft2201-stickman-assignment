@@ -147,14 +147,20 @@ public class Hero implements Entity {
                     this.lives = this.lives - 1;
                     invulnerability = true;
                 }
+
+                if (collision == collisionType.LEFT) {
+                    this.xPos = this.xPos - 2;
+                } else {
+                    this.xPos = this.xPos + 2;
+                }
             }
         } else if (entityB instanceof Platform) {
             switch (collision) {
             case LEFT:
-                this.xVelocity = -0.1;
+                this.xPos = this.xPos - 2;
                 break;
             case RIGHT:
-                this.xVelocity = 0.1;
+                this.xPos = this.xPos + 2;
                 break;
             case TOP:
                 this.yVelocity = 0.0;
