@@ -33,6 +33,13 @@ public interface Level {
     double getWidth();
 
     /**
+     * Used to get the current tick.
+     * 
+     * @return int
+     */
+    int getTickCounter();
+
+    /**
      * Used to set the cloud velocity of a level.
      * 
      * @param CloudVelocity

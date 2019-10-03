@@ -153,6 +153,8 @@ public class Hero implements Entity {
                 } else {
                     this.xPos = this.xPos + 2;
                 }
+            } else if (collision == collisionType.TOP) {
+                this.lives++;
             }
         } else if (entityB instanceof Platform) {
             switch (collision) {

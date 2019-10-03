@@ -17,7 +17,7 @@
 
 	"slimes": [
 		{ "colour": "r", "size": "small", "x": 80.0 },
-		{ "colour": "y", "size": "big", "x": 120.0 }
+		{ "colour": "y", "size": "small", "x": 120.0 }
 	],
 
 	"_slimesComment": "Slimes can be red (r), green (g), blue (b), yellow (y), or purple (p). They can be either big or small in size.",

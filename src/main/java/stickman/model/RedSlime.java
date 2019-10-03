@@ -1,7 +1,5 @@
 package stickman.model;
 
-import stickman.model.LevelImpl.collisionType;
-
 public class RedSlime extends Slime implements SlimeStrategy {
 
     public RedSlime(String size, double startX, Level level) {
@@ -10,8 +8,8 @@ public class RedSlime extends Slime implements SlimeStrategy {
     }
 
     @Override
-    public void think(collisionType collision, Level level) {
-        // TODO Auto-generated method stub
+    public void think(Level level) {
+        // Stands still
 
     }
 

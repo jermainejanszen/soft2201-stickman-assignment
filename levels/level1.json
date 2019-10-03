@@ -16,20 +16,26 @@
 	"_cloudVelocityComment": "Clouds should move the given number of pixels per second. This must be a positive double.",
 
 	"slimes": [
-		{ "colour": "y", "size": "small", "x": 80.0 },
-		{ "colour": "r", "size": "big", "x": 120.0 }
+		{ "colour": "r", "size": "small", "x": 150.0 },
+		{ "colour": "g", "size": "small", "x": 180.0 },
+		{ "colour": "b", "size": "small", "x": 210.0 },
+		{ "colour": "y", "size": "small", "x": 240.0 },
+		{ "colour": "p", "size": "small", "x": 270.0 }
 	],
 
 	"_slimesComment": "Slimes can be red (r), green (g), blue (b), yellow (y), or purple (p). They can be either big or small in size.",
 
 	"platforms": [
-		{ "x": 40.0, "y": 250.0, "width": 40.0 }
+		{ "x": 40.0, "y": 250.0, "width": 40.0 },
+		{ "x": 90.0, "y": 250.0, "width": 40.0 },
+		{ "x": 140.0, "y": 250.0, "width": 40.0 },
+		{ "x": 190.0, "y": 250.0, "width": 40.0 }
 	],
 
 	"_platformsComment": "Platforms have a fixed height of 20 pixels.",
 
 	"finishLinePos": {
-		"x": 300.0
+		"x": 400.0
 	},
 
 	"_finishLinePosComment": "The position of the finish line for the level.",

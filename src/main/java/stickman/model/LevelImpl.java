@@ -34,6 +34,11 @@ public class LevelImpl implements Level {
     }
 
     @Override
+    public int getTickCounter() {
+        return this.tickCounter;
+    }
+
+    @Override
     public void setCloudVelocity(double cloudVelocity) {
         this.cloudVelocity = cloudVelocity;
     }
@@ -46,6 +51,7 @@ public class LevelImpl implements Level {
             this.entities.add(new Cloud(this.cloudVelocity, this));
         }
 
+        // Check if any slimes were killed
         for (int i = entities.size() - 1; i > -1; i--) {
             if (entities.get(i) instanceof Slime) {
                 if (((Slime) entities.get(i)).die) {
@@ -54,8 +60,12 @@ public class LevelImpl implements Level {
             }
         }
 
+        // Check and handle collisions
         for (Entity entityA : entities) {
             entityA.tickBehaviour(tickCounter);
+            if (entityA instanceof Slime) {
+                ((Slime) entityA).think(this);
+            }
 
             for (Entity entityB : entities) {
                 collisionType collision = checkCollision(entityA, entityB);

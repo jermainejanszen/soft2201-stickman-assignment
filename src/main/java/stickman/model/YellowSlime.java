@@ -1,7 +1,5 @@
 package stickman.model;
 
-import stickman.model.LevelImpl.collisionType;
-
 public class YellowSlime extends Slime implements SlimeStrategy {
 
     public YellowSlime(String size, double startX, Level level) {
@@ -10,9 +8,17 @@ public class YellowSlime extends Slime implements SlimeStrategy {
     }
 
     @Override
-    public void think(collisionType collision, Level level) {
-        // TODO Auto-generated method stub
-
+    public void think(Level level) {
+        // Always tries to go towards Hero's xPos
+        for (Entity entity : level.getEntities()) {
+            if (entity instanceof Hero) {
+                if (this.getXPos() < entity.getXPos()) {
+                    this.moveRight();
+                } else {
+                    this.moveLeft();
+                }
+            }
+        }
     }
 
 }

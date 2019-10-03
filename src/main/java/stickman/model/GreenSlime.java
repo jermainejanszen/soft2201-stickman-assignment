@@ -1,8 +1,8 @@
 package stickman.model;
 
-import stickman.model.LevelImpl.collisionType;
-
 public class GreenSlime extends Slime implements SlimeStrategy {
+
+    private boolean hasJumped = false;
 
     public GreenSlime(String size, double startX, Level level) {
         super(size, startX, level);
@@ -10,9 +10,18 @@ public class GreenSlime extends Slime implements SlimeStrategy {
     }
 
     @Override
-    public void think(collisionType collision, Level level) {
-        // TODO Auto-generated method stub
-
+    public void think(Level level) {
+        // Jumps once when the hero gets within 20px of it
+        for (Entity entity : level.getEntities()) {
+            if (entity instanceof Hero) {
+                if (Math.abs(entity.getXPos() - this.getXPos()) < 21) {
+                    if (!hasJumped) {
+                        this.jump();
+                        this.hasJumped = true;
+                    }
+                }
+            }
+        }
     }
 
 }

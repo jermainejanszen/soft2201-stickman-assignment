@@ -1,6 +1,6 @@
 package stickman.model;
 
-import stickman.model.LevelImpl.collisionType;
+import java.util.Random;
 
 public class PurpleSlime extends Slime implements SlimeStrategy {
 
@@ -10,9 +10,16 @@ public class PurpleSlime extends Slime implements SlimeStrategy {
     }
 
     @Override
-    public void think(collisionType collision, Level level) {
-        // TODO Auto-generated method stub
-
+    public void think(Level level) {
+        // Every 2 seconds randomly chooses a direction to travel
+        if (level.getTickCounter() % 120 == 0) {
+            Random rand = new Random();
+            if (rand.nextInt(2) == 0) {
+                this.moveLeft();
+            } else {
+                this.moveRight();
+            }
+        }
     }
 
 }

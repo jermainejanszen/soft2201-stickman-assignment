@@ -65,7 +65,7 @@ public class Slime implements Entity {
     @Override
     public boolean jump() {
         if (this.yVelocity == 0) {
-            this.yVelocity = -5.0;
+            this.yVelocity = -4.0;
             return true;
         }
         return false;
@@ -73,25 +73,13 @@ public class Slime implements Entity {
 
     @Override
     public boolean moveRight() {
-        if (this.xVelocity == 0.0) {
-            this.xVelocity = 1.0;
-            return true;
-        } else if (this.xVelocity < 0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
+        this.xVelocity = 0.5;
         return false;
     }
 
     @Override
     public boolean moveLeft() {
-        if (this.xVelocity == 0.0) {
-            this.xVelocity = -1.0;
-            return true;
-        } else if (this.xVelocity > 0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
+        this.xVelocity = -0.5;
         return false;
     }
 
@@ -120,6 +108,10 @@ public class Slime implements Entity {
         this.xPos = this.xPos + this.xVelocity;
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
+    }
+
+    public void think(Level level) {
+        return;
     }
 
     @Override
