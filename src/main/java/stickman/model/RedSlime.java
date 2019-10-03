@@ -4,8 +4,9 @@ import stickman.model.LevelImpl.collisionType;
 
 public class RedSlime extends Slime implements SlimeStrategy {
 
-    public RedSlime(String colour, String size, double startX, Level level) {
-        super(colour, size, startX, level);
+    public RedSlime(String size, double startX, Level level) {
+        super(size, startX, level);
+        this.setImagePath("slimeRa.png");
     }
 
     @Override

@@ -50,19 +50,19 @@ public class LevelFactory {
                 double slimeX = (double) ((JSONObject) jsonSlimes.get(i)).get("x");
                 switch (slimeColour) {
                 case "r":
-                    slimes.add(new RedSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    slimes.add(new RedSlime(slimeSize, slimeX, newLevel));
                     break;
                 case "g":
-                    slimes.add(new GreenSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    slimes.add(new GreenSlime(slimeSize, slimeX, newLevel));
                     break;
                 case "b":
-                    slimes.add(new BlueSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    slimes.add(new BlueSlime(slimeSize, slimeX, newLevel));
                     break;
                 case "y":
-                    slimes.add(new YellowSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    slimes.add(new YellowSlime(slimeSize, slimeX, newLevel));
                     break;
                 case "p":
-                    slimes.add(new PurpleSlime(slimeColour, slimeSize, slimeX, newLevel));
+                    slimes.add(new PurpleSlime(slimeSize, slimeX, newLevel));
                     break;
                 default:
                     System.out.println("'" + slimeColour + "' is an invalid slime colour.");

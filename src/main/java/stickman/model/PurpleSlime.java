@@ -4,8 +4,9 @@ import stickman.model.LevelImpl.collisionType;
 
 public class PurpleSlime extends Slime implements SlimeStrategy {
 
-    public PurpleSlime(String colour, String size, double startX, Level level) {
-        super(colour, size, startX, level);
+    public PurpleSlime(String size, double startX, Level level) {
+        super(size, startX, level);
+        this.setImagePath("slimePa.png");
     }
 
     @Override
