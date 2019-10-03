@@ -155,7 +155,9 @@ public class Hero implements Entity {
                 }
             } else if (collision == collisionType.TOP) {
                 this.yVelocity = -2.5;
-                this.lives++;
+                if (this.lives < 4) {
+                    this.lives++;
+                }
             }
         } else if (entityB instanceof Platform) {
             switch (collision) {
