@@ -70,25 +70,11 @@ public class Platform implements Entity {
 
     @Override
     public boolean moveRight() {
-        if (this.xVelocity == 0.0) {
-            this.xVelocity = 1.0;
-            return true;
-        } else if (this.xVelocity < 0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
         return false;
     }
 
     @Override
     public boolean moveLeft() {
-        if (this.xVelocity == 0.0) {
-            this.xVelocity = -1.0;
-            return true;
-        } else if (this.xVelocity > 0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
         return false;
     }
 
