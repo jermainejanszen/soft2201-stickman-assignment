@@ -154,6 +154,7 @@ public class Hero implements Entity {
                     this.xPos = this.xPos + 2;
                 }
             } else if (collision == collisionType.TOP) {
+                this.yVelocity = -2.5;
                 this.lives++;
             }
         } else if (entityB instanceof Platform) {
