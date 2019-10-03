@@ -3,7 +3,6 @@ package stickman.model;
 import stickman.model.LevelImpl.collisionType;
 
 public class Hero implements Entity {
-    // Hero's attributes
     private String imagePath;
     private double xPos;
     private double yPos;
@@ -58,7 +57,6 @@ public class Hero implements Entity {
         this.invulnerability = false;
     }
 
-    // Hero's methods
     @Override
     public String getImagePath() {
         return this.imagePath;
@@ -224,7 +222,7 @@ public class Hero implements Entity {
     public void animate(int tick) {
         int loopTick = tick % 90;
 
-        // Not moving
+        /* Not moving */
         if (this.xVelocity == 0) {
             String currentImage = this.imagePath;
             if (currentImage.charAt(3) == 's') {
@@ -246,13 +244,13 @@ public class Hero implements Entity {
             }
         }
 
-        // Moving right
+        /* Moving right */
         if (this.xVelocity > 0) {
             int nextImage = Math.floorDiv(loopTick, 23) + 1;
             this.imagePath = (String.format("ch_walk%d.png", nextImage));
         }
 
-        // Moving left
+        /* Moving left */
         if (this.xVelocity < 0) {
             int nextImage = Math.floorDiv(loopTick, 23) + 5;
             this.imagePath = (String.format("ch_walk%d.png", nextImage));

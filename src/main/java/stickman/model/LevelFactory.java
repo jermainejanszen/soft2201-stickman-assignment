@@ -14,6 +14,12 @@ import org.json.simple.parser.ParseException;
 
 public class LevelFactory {
 
+    /**
+     * Used to parse a JSON level configuration file.
+     * 
+     * @param jsonPath The path to the configuration file.
+     * @return The level object and the string file path to the next level.
+     */
     public static LevelNode levelMake(String jsonPath) {
         List<Entity> entities = new ArrayList<Entity>();
         Level newLevel = new LevelImpl(entities, 400, 640, 300);
@@ -28,7 +34,7 @@ public class LevelFactory {
         ArrayList<Platform> platforms = new ArrayList<Platform>();
         double finishLineXPos = -1.0;
 
-        // Begin parsing JSON file
+        /* Begin parsing JSON file */
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader(configFilePath)) {
             Object obj = jsonParser.parse(reader);
@@ -43,7 +49,7 @@ public class LevelFactory {
             JSONArray jsonSlimes = (JSONArray) jsonObject.get("slimes");
             JSONArray jsonPlatforms = (JSONArray) jsonObject.get("platforms");
 
-            // Adding the slimes to the level
+            /* Adding the slimes to the level */
             for (int i = 0; i < jsonSlimes.size(); i++) {
                 String slimeColour = (String) ((JSONObject) jsonSlimes.get(i)).get("colour");
                 String slimeSize = (String) ((JSONObject) jsonSlimes.get(i)).get("size");
@@ -69,7 +75,7 @@ public class LevelFactory {
                 }
             }
 
-            // Adding the platforms to the level
+            /* Adding the platforms to the level */
             for (int i = 0; i < jsonPlatforms.size(); i++) {
                 double platformX = (double) ((JSONObject) jsonPlatforms.get(i)).get("x");
                 double platformY = (double) ((JSONObject) jsonPlatforms.get(i)).get("y");

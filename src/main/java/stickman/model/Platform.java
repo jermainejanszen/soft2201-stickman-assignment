@@ -12,6 +12,14 @@ public class Platform implements Entity {
     private double width;
     private Layer layer;
 
+    /**
+     * Used to create a new platform entity.
+     * 
+     * @param xPos  The x position of the platform.
+     * @param yPos  The y position of the platform.
+     * @param width The width of the platform.
+     * @param level The level that the platform is in.
+     */
     public Platform(double xPos, double yPos, double width, Level level) {
         this.xPos = xPos;
         this.width = width;
@@ -29,7 +37,7 @@ public class Platform implements Entity {
 
     @Override
     public void applyGravity() {
-        // No action needed
+        /* No action needed */
     }
 
     @Override
@@ -95,10 +103,6 @@ public class Platform implements Entity {
 
     @Override
     public boolean stopMoving() {
-        if (this.xVelocity != 0.0) {
-            this.xVelocity = 0.0;
-            return true;
-        }
         return false;
     }
 

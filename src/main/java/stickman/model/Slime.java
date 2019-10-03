@@ -4,7 +4,6 @@ import stickman.model.LevelImpl.collisionType;
 
 public class Slime implements Entity {
 
-    // Slime's attributes
     private String imagePath;
     private double xPos;
     private double yPos;
@@ -16,7 +15,13 @@ public class Slime implements Entity {
     private Layer layer;
     public boolean die;
 
-    // Slime's contructor
+    /**
+     * Used to create a new slime entity.
+     * 
+     * @param size   The size of the slime.
+     * @param startX The starting x position of the slime.
+     * @param level  The level that the slime is in.
+     */
     public Slime(String size, double startX, Level level) {
         this.floorHeight = level.getFloorHeight();
 
@@ -43,7 +48,6 @@ public class Slime implements Entity {
         this.layer = Layer.FOREGROUND;
     }
 
-    // Slime's methods
     @Override
     public String getImagePath() {
         return this.imagePath;

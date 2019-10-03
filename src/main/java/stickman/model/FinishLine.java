@@ -3,7 +3,6 @@ package stickman.model;
 import stickman.model.LevelImpl.collisionType;
 
 public class FinishLine implements Entity {
-
     private String imagePath;
     private double xPos;
     private double yPos;
@@ -14,6 +13,12 @@ public class FinishLine implements Entity {
     private Layer layer;
     private boolean levelComplete;
 
+    /**
+     * Used to construct the finish line.
+     * 
+     * @param xPos  The x position of the finish line.
+     * @param level The level that the finish line is in.
+     */
     public FinishLine(double xPos, Level level) {
         this.imagePath = "finish.png";
         this.height = 30.8;

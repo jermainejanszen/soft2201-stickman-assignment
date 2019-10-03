@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 public class LevelImpl implements Level {
-    // Level's attributes
     private List<Entity> entities;
     private double cloudVelocity;
     private double height;
@@ -29,7 +28,6 @@ public class LevelImpl implements Level {
         this.tickCounter = 0;
     }
 
-    // Level's methods
     @Override
     public List<Entity> getEntities() {
         return this.entities;
@@ -62,13 +60,13 @@ public class LevelImpl implements Level {
 
     @Override
     public void tick() {
-        // Randomly add clouds
+        /* Randomly add clouds */
         Random rand = new Random();
         if (rand.nextInt(4000) == 0) {
             this.entities.add(new Cloud(this.cloudVelocity, this));
         }
 
-        // Check if any slimes were killed
+        /* Check if any slimes were killed */
         for (int i = entities.size() - 1; i > -1; i--) {
             if (entities.get(i) instanceof Slime) {
                 if (((Slime) entities.get(i)).die) {
@@ -77,7 +75,7 @@ public class LevelImpl implements Level {
             }
         }
 
-        // Check and handle collisions
+        /* Check and handle collisions */
         for (Entity entityA : entities) {
             entityA.tickBehaviour(tickCounter);
             if (entityA instanceof Slime) {

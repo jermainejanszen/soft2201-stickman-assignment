@@ -3,7 +3,6 @@ package stickman.model;
 import java.util.Random;
 
 public class Cloud implements Entity {
-    // Cloud's attributes
     private String imagePath;
     private double xPos;
     private double yPos;
@@ -40,7 +39,6 @@ public class Cloud implements Entity {
         this.layer = Layer.BACKGROUND;
     }
 
-    // Cloud's methods
     @Override
     public String getImagePath() {
         return this.imagePath;
