@@ -102,7 +102,7 @@ public class FinishLine implements Entity {
     }
 
     public FinishLine(double xPos, Level level) {
-        this.imagePath = "tree.png";
+        this.imagePath = "finish.png";
         this.height = 30.8;
         this.width = 20.0;
         this.xPos = xPos;
