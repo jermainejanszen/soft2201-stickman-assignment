@@ -13,7 +13,7 @@ Adding levels:
 
     GameEngine model = new GameEngineImpl(<FILE_PATH_HERE>);
 
-    To progress through multiple levels ensure that the correct file path is listed as the next level in the current level's configuration file.
+To progress through multiple levels ensure that the correct file path is listed as the next level in the current level's configuration file.
 
 Playing the game:
     The aim of the game is to reach the finishline flag without running out of lives. The hero starts with 3 lives and loses lives every time they run into a slime. They can win lives back occasionally by killing slimes which is done by landing on them from above.
