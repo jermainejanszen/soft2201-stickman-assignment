@@ -35,7 +35,7 @@ public class GameWindow {
         scene.setOnKeyPressed(keyboardInputHandler::handlePressed);
         scene.setOnKeyReleased(keyboardInputHandler::handleReleased);
 
-        this.backgroundDrawer = new BlockedBackground();
+        this.backgroundDrawer = new ParallaxBackground();
 
         backgroundDrawer.draw(model, pane);
     }
@@ -45,8 +45,7 @@ public class GameWindow {
     }
 
     public void run() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(17),
-                t -> this.draw()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(17), t -> this.draw()));
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -57,7 +56,7 @@ public class GameWindow {
 
         List<Entity> entities = model.getCurrentLevel().getEntities();
 
-        for (EntityView entityView: entityViews) {
+        for (EntityView entityView : entityViews) {
             entityView.markForDelete();
         }
 
@@ -77,9 +76,9 @@ public class GameWindow {
 
         backgroundDrawer.update(xViewportOffset);
 
-        for (Entity entity: entities) {
+        for (Entity entity : entities) {
             boolean notFound = true;
-            for (EntityView view: entityViews) {
+            for (EntityView view : entityViews) {
                 if (view.matchesEntity(entity)) {
                     notFound = false;
                     view.update(xViewportOffset);
@@ -93,7 +92,7 @@ public class GameWindow {
             }
         }
 
-        for (EntityView entityView: entityViews) {
+        for (EntityView entityView : entityViews) {
             if (entityView.isMarkedForDelete()) {
                 pane.getChildren().remove(entityView.getNode());
             }
