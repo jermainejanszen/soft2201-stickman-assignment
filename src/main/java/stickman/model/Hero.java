@@ -4,6 +4,7 @@ import stickman.model.LevelImpl.collisionType;
 
 public class Hero implements Entity {
     private String imagePath;
+    private double startX;
     private double xPos;
     private double yPos;
     private double floorHeight;
@@ -27,6 +28,7 @@ public class Hero implements Entity {
     public Hero(double xPos, String size, Level level) {
         this.imagePath = "ch_stand1.png";
         this.xPos = xPos;
+        this.startX = xPos;
         switch (size) {
         case "tiny":
             this.height = 17;
@@ -185,15 +187,14 @@ public class Hero implements Entity {
                 if (!invulnerability) {
                     this.lives = this.lives - 1;
                     invulnerability = true;
-                }
-
-                if (collision == collisionType.LEFT) {
-                    this.xPos = this.xPos - 2;
-                } else {
-                    this.xPos = this.xPos + 2;
+                    this.xPos = this.startX;
+                    this.yPos = this.floorHeight - this.height;
+                    this.xVelocity = 0.0;
+                    this.yVelocity = 0.0;
                 }
             } else if (collision == collisionType.TOP) {
                 this.yVelocity = -2.5;
+                this.invulnerability = true;
                 if (this.lives < 3) {
                     this.lives++;
                 }
