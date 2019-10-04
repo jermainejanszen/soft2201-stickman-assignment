@@ -6,15 +6,13 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import stickman.model.*;
-import stickman.model.LevelImpl.collisionType;
+import stickman.Paths;
 
 public class LevelTest {
 
-    public String LevelsPath = "src/test/resources/levels/";
-
     @Test
     public void nothingBelowFloorHeight() {
-        GameEngine model = new GameEngineImpl(LevelsPath + "level1.json");
+        GameEngine model = new GameEngineImpl(Paths.LevelsPath + "level1.json");
         List<Entity> entities = model.getCurrentLevel().getEntities();
 
         for (Entity entity : entities) {
@@ -24,7 +22,7 @@ public class LevelTest {
 
     @Test
     public void canAddEntitiesToLevel() {
-        GameEngine model = new GameEngineImpl(LevelsPath + "level1.json");
+        GameEngine model = new GameEngineImpl(Paths.LevelsPath + "level1.json");
         Level level = model.getCurrentLevel();
         List<Entity> entities = level.getEntities();
 
@@ -36,7 +34,7 @@ public class LevelTest {
 
     @Test
     public void canDetectCollisions() {
-        GameEngine model = new GameEngineImpl(LevelsPath + "levelBlank.json");
+        GameEngine model = new GameEngineImpl(Paths.LevelsPath + "levelBlank.json");
         LevelImpl level = (LevelImpl) model.getCurrentLevel();
 
         Hero hero = null;
@@ -50,8 +48,7 @@ public class LevelTest {
         Platform platform = new Platform(hero.getXPos(), hero.getYPos(), hero.getWidth(), level);
 
         LevelImpl.collisionType collision = level.checkCollision(hero, platform);
-
-        assertNotSame(collisionType.NONE, collision);
+        assertNotSame(LevelImpl.collisionType.NONE, collision);
     }
 
 }
