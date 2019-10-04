@@ -7,7 +7,6 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import stickman.model.Entity;
 import stickman.model.GameEngine;
-import stickman.model.Hero;
 
 import java.util.ArrayList;
 import java.util.List;

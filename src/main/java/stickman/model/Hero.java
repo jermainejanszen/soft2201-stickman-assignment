@@ -194,7 +194,7 @@ public class Hero implements Entity {
                 }
             } else if (collision == collisionType.TOP) {
                 this.yVelocity = -2.5;
-                if (this.lives < 4) {
+                if (this.lives < 3) {
                     this.lives++;
                 }
             }
