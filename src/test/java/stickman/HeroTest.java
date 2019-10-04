@@ -53,4 +53,23 @@ public class HeroTest {
             }
         }
     }
+
+    @Test
+    public void checkHeroCanLoseLives() {
+        GameEngine model = new GameEngineImpl(Paths.LevelsPath + "levelBlank.json");
+        Level level = model.getCurrentLevel();
+        List<Entity> entities = level.getEntities();
+
+        for (Entity entity : entities) {
+            if (entity instanceof Hero) {
+                Hero hero = (Hero) entity;
+                int startingLives = hero.getLives();
+                assertEquals(startingLives, hero.getLives());
+                level.addEntity(new RedSlime("small", hero.getXPos(), level));
+                level.tick();
+                assertEquals((startingLives - 1), hero.getLives());
+                break;
+            }
+        }
+    }
 }

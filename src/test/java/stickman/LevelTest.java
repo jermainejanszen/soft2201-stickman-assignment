@@ -51,4 +51,24 @@ public class LevelTest {
         assertNotSame(LevelImpl.collisionType.NONE, collision);
     }
 
+    @Test
+    public void checkGravityWorks() {
+        GameEngine model = new GameEngineImpl(Paths.LevelsPath + "level1.json");
+        Level level = model.getCurrentLevel();
+        List<Entity> entities = level.getEntities();
+
+        for (Entity entity : entities) {
+            if (entity instanceof Hero) {
+
+                entity.jump();
+                double jumpingVelocity = entity.getYVelocity();
+                assertTrue(0 > jumpingVelocity);
+
+                level.tick();
+                assertTrue(jumpingVelocity + Gravity.acceleration == entity.getYVelocity());
+                break;
+            }
+        }
+    }
+
 }
