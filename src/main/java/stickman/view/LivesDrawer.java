@@ -26,8 +26,8 @@ public class LivesDrawer {
         double paneWidth = pane.getWidth();
         double paneHeight = pane.getHeight();
 
-        this.livesView.setX(paneWidth * 9 / 10);
-        this.livesView.setY(paneHeight * 0.75 / 10);
+        this.livesView.setX(paneWidth * 8 / 10);
+        this.livesView.setY(paneHeight * 0.70 / 10);
         this.livesView.setFill(Color.BLACK);
         this.livesView.setViewOrder(1);
 

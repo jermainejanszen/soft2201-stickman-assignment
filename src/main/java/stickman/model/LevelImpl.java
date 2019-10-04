@@ -10,6 +10,7 @@ public class LevelImpl implements Level {
     private double width;
     private double floorHeight;
     private int tickCounter;
+    private int secondsElapsed;
 
     /**
      * Used to construct a level with a given height, width, and floor height.
@@ -26,6 +27,7 @@ public class LevelImpl implements Level {
         this.width = width;
         this.floorHeight = floorHeight;
         this.tickCounter = 0;
+        this.secondsElapsed = 0;
     }
 
     @Override
@@ -51,6 +53,11 @@ public class LevelImpl implements Level {
     @Override
     public int getTickCounter() {
         return this.tickCounter;
+    }
+
+    @Override
+    public int getSecondsElapsed() {
+        return this.secondsElapsed;
     }
 
     @Override
@@ -91,6 +98,9 @@ public class LevelImpl implements Level {
         }
 
         this.tickCounter = this.tickCounter + 1;
+        if (this.tickCounter % 60 == 0) {
+            this.secondsElapsed++;
+        }
         return;
     }
 

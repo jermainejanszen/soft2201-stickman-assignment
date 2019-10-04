@@ -19,6 +19,7 @@ public class GameWindow {
     private List<EntityView> entityViews;
     private BackgroundDrawer backgroundDrawer;
     private LivesDrawer livesDrawer;
+    private TimeElapsedDrawer timeElapsedDrawer;
 
     private double xViewportOffset = 0.0;
     private static final double VIEWPORT_MARGIN = 280.0;
@@ -38,9 +39,11 @@ public class GameWindow {
 
         this.backgroundDrawer = new ParallaxBackground();
         this.livesDrawer = new LivesDrawer(model);
+        this.timeElapsedDrawer = new TimeElapsedDrawer(model);
 
         backgroundDrawer.draw(model, pane);
         livesDrawer.draw(model, pane);
+        timeElapsedDrawer.draw(model, pane);
     }
 
     public Scene getScene() {
@@ -79,6 +82,7 @@ public class GameWindow {
 
         backgroundDrawer.update(xViewportOffset);
         livesDrawer.update(model);
+        timeElapsedDrawer.update(model);
 
         for (Entity entity : entities) {
             boolean notFound = true;

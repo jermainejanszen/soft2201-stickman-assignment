@@ -40,6 +40,13 @@ public interface Level {
     int getTickCounter();
 
     /**
+     * Used to get the seconds elapsed in the level.
+     * 
+     * @return int
+     */
+    int getSecondsElapsed();
+
+    /**
      * Used to set the cloud velocity of a level.
      * 
      * @param CloudVelocity
