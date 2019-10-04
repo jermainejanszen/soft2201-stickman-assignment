@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/soft2201-stickman-assignment.iml" filepath="$PROJECT_DIR$/soft2201-stickman-assignment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stickman.iml" filepath="$PROJECT_DIR$/stickman.iml" />
+    </modules>
+  </component>
+</project>
