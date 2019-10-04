@@ -28,11 +28,11 @@ public class LivesDrawer {
     }
 
     public void draw(GameEngine model, Pane pane) {
-        double paneWidth = pane.getPrefWidth();
-        double paneHeight = pane.getPrefHeight();
+        double paneWidth = pane.getWidth();
+        double paneHeight = pane.getHeight();
 
-        this.livesView.setX(570);
-        this.livesView.setY(25);
+        this.livesView.setX(paneWidth * 9 / 10);
+        this.livesView.setY(paneHeight * 0.75 / 10);
         this.livesView.setFill(Color.BLACK);
         this.livesView.setViewOrder(1);
 
