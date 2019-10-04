@@ -139,6 +139,7 @@ public class Slime implements Entity {
         this.xPos = this.xPos + this.xVelocity;
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
+        this.animate(tick);
     }
 
     public void think(Level level) {
@@ -172,5 +173,22 @@ public class Slime implements Entity {
             }
         }
         return;
+    }
+
+    public void animate(int tick) {
+        int loopTick = tick % 45;
+        String currentImage = this.imagePath;
+
+        if (loopTick == 0) {
+            if (currentImage.charAt(6) == 'a') {
+                StringBuilder newImage = new StringBuilder(currentImage);
+                newImage.setCharAt(6, 'b');
+                this.imagePath = newImage.toString();
+            } else {
+                StringBuilder newImage = new StringBuilder(currentImage);
+                newImage.setCharAt(6, 'a');
+                this.imagePath = newImage.toString();
+            }
+        }
     }
 }
