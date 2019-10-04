@@ -149,11 +149,11 @@ public class LevelImpl implements Level {
         return false;
     }
 
-    enum collisionType {
+    public enum collisionType {
         TOP, BOTTOM, LEFT, RIGHT, NONE
     }
 
-    private collisionType checkCollision(Entity entityA, Entity entityB) {
+    public collisionType checkCollision(Entity entityA, Entity entityB) {
         if (entityA == entityB) {
             return collisionType.NONE;
         }
