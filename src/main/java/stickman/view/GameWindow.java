@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import stickman.model.Entity;
 import stickman.model.GameEngine;
+import stickman.model.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class GameWindow {
     private GameEngine model;
     private List<EntityView> entityViews;
     private BackgroundDrawer backgroundDrawer;
+    private LivesDrawer livesDrawer;
 
     private double xViewportOffset = 0.0;
     private static final double VIEWPORT_MARGIN = 280.0;
@@ -36,8 +38,10 @@ public class GameWindow {
         scene.setOnKeyReleased(keyboardInputHandler::handleReleased);
 
         this.backgroundDrawer = new ParallaxBackground();
+        this.livesDrawer = new LivesDrawer(model);
 
         backgroundDrawer.draw(model, pane);
+        livesDrawer.draw(model, pane);
     }
 
     public Scene getScene() {
@@ -75,6 +79,7 @@ public class GameWindow {
         }
 
         backgroundDrawer.update(xViewportOffset);
+        livesDrawer.update(model);
 
         for (Entity entity : entities) {
             boolean notFound = true;
