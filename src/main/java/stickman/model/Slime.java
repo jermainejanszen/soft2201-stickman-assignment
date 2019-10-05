@@ -149,11 +149,13 @@ public class Slime implements Entity {
     @Override
     public void collisionBehaviour(LevelImpl.collisionType collision, Entity entityB) {
         if (entityB instanceof Hero) {
+            /* Dies if the hero hits the slime from above */
             if (collision == collisionType.BOTTOM) {
                 this.die = true;
             }
         } else if (entityB instanceof Platform) {
             switch (collision) {
+            /* Slime reverses if it hits a platform from the side */
             case LEFT:
                 this.xPos = this.xPos - 1;
                 this.xVelocity = -this.xVelocity;

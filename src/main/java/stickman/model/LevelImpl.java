@@ -82,13 +82,14 @@ public class LevelImpl implements Level {
             }
         }
 
-        /* Check and handle collisions */
         for (Entity entityA : entities) {
+            /* Allow the entity to carry out its behaviour */
             entityA.tickBehaviour(tickCounter);
             if (entityA instanceof Slime) {
                 ((Slime) entityA).think(this);
             }
 
+            /* Check and handle collisions */
             for (Entity entityB : entities) {
                 collisionType collision = checkCollision(entityA, entityB);
                 if (collision != collisionType.NONE) {
@@ -98,6 +99,7 @@ public class LevelImpl implements Level {
         }
 
         this.tickCounter = this.tickCounter + 1;
+        /* Updates the elapsed time in the level so far */
         if (this.tickCounter % 60 == 0) {
             this.secondsElapsed++;
         }
@@ -174,6 +176,7 @@ public class LevelImpl implements Level {
 
         boolean collision = false;
 
+        /* Check for any type of collision */
         if (entityA.getXPos() < (entityB.getXPos() + entityB.getWidth())
                 && ((entityA.getXPos() + entityA.getWidth()) > entityB.getXPos())
                 && (entityA.getYPos() < (entityB.getYPos() + entityB.getHeight()))
@@ -181,6 +184,7 @@ public class LevelImpl implements Level {
             collision = true;
         }
 
+        /* Classify and return the type of collision */
         if (collision) {
             if (Math.abs(entityA.getYPos() + entityA.getHeight() - entityB.getYPos()) < entityB.getHeight() * 0.25) {
                 return collisionType.TOP;

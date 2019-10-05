@@ -49,7 +49,7 @@ public class LevelFactory {
             JSONArray jsonSlimes = (JSONArray) jsonObject.get("slimes");
             JSONArray jsonPlatforms = (JSONArray) jsonObject.get("platforms");
 
-            /* Adding the slimes to the level */
+            /* Creating the slimes to add to the level */
             for (int i = 0; i < jsonSlimes.size(); i++) {
                 String slimeColour = (String) ((JSONObject) jsonSlimes.get(i)).get("colour");
                 String slimeSize = (String) ((JSONObject) jsonSlimes.get(i)).get("size");
@@ -75,7 +75,7 @@ public class LevelFactory {
                 }
             }
 
-            /* Adding the platforms to the level */
+            /* Creating the platforms to add to the level */
             for (int i = 0; i < jsonPlatforms.size(); i++) {
                 double platformX = (double) ((JSONObject) jsonPlatforms.get(i)).get("x");
                 double platformY = (double) ((JSONObject) jsonPlatforms.get(i)).get("y");
@@ -91,12 +91,16 @@ public class LevelFactory {
             System.out.println("Parse exception thrown.");
         }
 
+        /* Adding the slimes to the level */
         for (int i = 0; i < slimes.size(); i++) {
             newLevel.addEntity(slimes.get(i));
         }
+        /* Adding the platforms to the level */
         for (int i = 0; i < platforms.size(); i++) {
             newLevel.addEntity(platforms.get(i));
         }
+
+        /* Adding the remaining entities */
         newLevel.addEntity(new Hero(stickmanXPos, stickmanSize, newLevel));
         newLevel.addEntity(new Cloud(cloudVelocity, newLevel));
         newLevel.addEntity(new Cloud(cloudVelocity, newLevel));

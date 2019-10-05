@@ -44,13 +44,14 @@ public class GameEngineImpl implements GameEngine {
     }
 
     public void tick() {
-        /* Reset the level if the hero runs out of lives */
         for (Entity entity : this.level.getEntities()) {
             if (entity instanceof Hero) {
+                /* Reset the level if the hero runs out of lives */
                 if (((Hero) entity).getLives() == 0) {
                     this.level = LevelFactory.levelMake(currentLevelPath).level;
                 }
             } else if (entity instanceof FinishLine) {
+                /* Start the next level if the hero reaches the finish line */
                 if (((FinishLine) entity).isLevelComplete()) {
                     LevelNode nextLevel = LevelFactory.levelMake(nextLevelPath);
                     this.level = nextLevel.level;

@@ -171,6 +171,8 @@ public class Hero implements Entity {
         this.yPos = this.yPos + this.yVelocity;
         this.applyGravity();
         this.animate(tick);
+
+        /* Gives the hero invulnerability for a second after being hit by a slime */
         if (invulnerability) {
             if (invulnerabilityTicks == 60) {
                 invulnerability = false;
@@ -183,16 +185,20 @@ public class Hero implements Entity {
     @Override
     public void collisionBehaviour(LevelImpl.collisionType collision, Entity entityB) {
         if (entityB instanceof Slime) {
+            /* Checks if the hero hit a slime from the sides */
             if (collision == collisionType.LEFT || collision == collisionType.RIGHT) {
+                /* Only affects the hero if she is vulnerable */
                 if (!invulnerability) {
                     this.lives = this.lives - 1;
                     invulnerability = true;
+                    /* Teleports hero back to starting position */
                     this.xPos = this.startX;
                     this.yPos = this.floorHeight - this.height;
                     this.xVelocity = 0.0;
                     this.yVelocity = 0.0;
                 }
             } else if (collision == collisionType.TOP) {
+                /* Hero bounces after jumping on a slime */
                 this.yVelocity = -2.5;
                 this.invulnerability = true;
                 if (this.lives < 3) {

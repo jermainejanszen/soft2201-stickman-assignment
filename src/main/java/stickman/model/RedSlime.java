@@ -17,7 +17,6 @@ public class RedSlime extends Slime implements SlimeStrategy {
     @Override
     public void think(Level level) {
         /* Stands still */
-
     }
 
 }
