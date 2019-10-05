@@ -36,16 +36,16 @@ Level files format:
 
     "platforms" : [
         {
-			"x": <double>,
-			"y": <double>,
-			"width": <double>
-		}
+            "x": <double>,
+            "y": <double>,
+            "width": <double>
+	    }
     ],
 
     "finishLinePos": {
 		"x": <double>
 	},
-    
+
     "nextLevel": "<file path to next level JSON>"
 
 Playing the game:
